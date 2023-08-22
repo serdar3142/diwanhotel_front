@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Kingho Hotel & Resort HTML Template</title>
+    <!-- Stylesheets -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <!-- Responsive File -->
+    <link href="assets/css/responsive.css" rel="stylesheet">
+    <!-- Color File -->
+    <link href="assets/css/color.css" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
+    <link rel="icon" href="assets/images/favicon.png" type="image/x-icon">
+
+    <!-- Responsive -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <script src="./assets/js/axios.min.js"></script>
+    <script src="./assets/js/vue.global.js"></script>
+    <script src="./assets/js/vue.global.prod.js"></script>
+    <script src="./assets/js/messages.js"></script>
+</head>
+
+<body id="app">
+
+    <div class="page-wrapper">
+
+        <!-- preloader -->
+        <div id="preloader" class="preloader">
+            <div class="animation-preloader">
+                <div class="spinner">
+                </div>
+            </div>
+            <div class="loader">
+                <div class="row">
+                    <div class="col-3 loader-section section-left">
+                        <div class="bg"></div>
+                    </div>
+                    <div class="col-3 loader-section section-left">
+                        <div class="bg"></div>
+                    </div>
+                    <div class="col-3 loader-section section-right">
+                        <div class="bg"></div>
+                    </div>
+                    <div class="col-3 loader-section section-right">
+                        <div class="bg"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid-line">
+            <span class="line-one"></span>
+            <span class="line-two"></span>
+            <span class="line-three"></span>
+            <span class="line-four"></span>
+        </div>
+
+        <!-- Main Header -->
+        <header class="main-header header-style-one">
+            <div class="header-top">
+                <div class="auto-container">
+                    <div class="wrapper-box box-style-one">
+                        <div class="left-column">
+                            <ul class="contact-info box-style-two">
+                                <li>
+                                    <a href="#">
+                                        {{computedGeneralInfo && computedGeneralInfo.email[0] }}
+                                    </a>
+                                </li>
+                                <li>|</li>
+                                <li>
+                                    <a href="#">
+                                        {{computedGeneralInfo && computedGeneralInfo.phone[0]}}
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="right-column box-style-two">
+                            <div class="custom__dropdown">
+                                <label for="touch"><span>{{computedLang && computedLang[lang]}}</span></label>
+                                <input ref="dropdownRef" tabindex="1" onblur="closeDropdown()" type="checkbox"
+                                    id="touch">
+                                <ul class="slide">
+                                    <template v-for="(l, key) in computedLang">
+                                        <li v-if="lang !== key" @click="changeLang(key)" :key="key">{{l}}</li>
+                                    </template>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="auto-container">
+                <div class="text-center">
+                    <!--Logo-->
+                    <div class="logo-box main-logo">
+                        <div class="logo"><a href="index.html">
+                                <img :src="computedGeneralInfo && computedGeneralInfo.logo" alt=""></a></div>
+                    </div>
+                </div>
+            </div>
+            <!-- Header Upper -->
+            <div class="header-upper">
+                <div class="auto-container">
+                    <div class="inner-container">
+
+                        <!--Nav Box-->
+                        <div class="nav-outer">
+                            <!--Mobile Navigation Toggler-->
+                            <div class="mobile-nav-toggler"><img src="assets/images/icons/icon-bar.png" alt=""></div>
+
+                            <!-- Main Menu -->
+                            <nav class="main-menu navbar-expand-md navbar-light">
+                                <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
+                                    <ul class="navigation">
+                                        <li><a href="index.html">{{computedNavList && computedNavList.home}}</a></li>
+                                        <li><a href="rooms.html">{{computedNavList && computedNavList.room}}</a></li>
+                                        <li><a href="gallery.html">{{computedNavList && computedNavList.gallery}}</a>
+                                        </li>
+                                        <li><a href="menu.html">{{computedNavList && computedNavList.menu}}</a></li>
+                                        <li><a href="contact.html">Contact</a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </nav>
+                        </div>
+                        <div class="right-column">
+                            <div class="search-toggler"><i class="far fa-search"></i></div>
+                            <div class="menu-bar sidemenu-nav-toggler"><img src="assets/images/icons/icon-bar3.png"
+                                    alt=""></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--End Header Upper-->
+
+            <!-- Sticky Header  -->
+            <div class="sticky-header">
+                <div class="header-upper">
+                    <div class="auto-container">
+                        <div class="inner-container">
+
+                            <!--Nav Box-->
+                            <div class="nav-outer">
+                                <!--Mobile Navigation Toggler-->
+                                <div class="mobile-nav-toggler"><img src="assets/images/icons/icon-bar.png" alt="">
+                                </div>
+
+                                <!-- Main Menu -->
+                                <nav class="main-menu navbar-expand-md navbar-light">
+                                </nav>
+                            </div>
+                            <div class="right-column">
+                                <div class="search-toggler"><i class="far fa-search"></i></div>
+                                <div class="menu-bar sidemenu-nav-toggler"><img src="assets/images/icons/icon-bar3.png"
+                                        alt=""></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Sticky Menu -->
+
+            <!-- Mobile Menu  -->
+            <div class="mobile-menu">
+                <div class="menu-backdrop"></div>
+                <div class="close-btn"><i class="icon far fa-times"></i></div>
+
+                <nav class="menu-box">
+                    <div class="nav-logo"><a href="index.html"><img
+                                :src="computedGeneralInfo && computedGeneralInfo.logoWhite " alt="" title=""></a></div>
+                    <div class="menu-outer">
+                        <!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
+                    </div>
+                </nav>
+            </div><!-- End Mobile Menu -->
+
+            <div class="nav-overlay">
+                <div class="cursor"></div>
+                <div class="cursor-follower"></div>
+            </div>
+        </header>
+        <!-- End Main Header -->
+
+        <!-- Hidden Sidebar -->
+        <section class="hidden-sidebar close-sidebar">
+            <div class="wrapper-box">
+                <div class="content-wrapper">
+                    <div class="hidden-sidebar-close"><span class="flaticon-remove"></span></div>
+                    <div class="about-widget widget">
+                        <div class="logo"><img :src="computedGeneralInfo && computedGeneralInfo.logoWhite " alt="">
+                        </div>
+                        <div class="text">We Have Over 40 Payment Ways for Locking the Lowest Room Rates. No Credit Card
+                            Needed! Read Reviews from Verified Guests.</div>
+                    </div>
+                    <div class="instagram-widget widget">
+                        <!-- <h4>Instagram Feeds</h4> -->
+                        <div class="inner-box">
+                            <div class="wrapper-box">
+                                <div v-for="(gal, i) in computedInstaGalleries" :key="'gal'+i" class="image">
+                                    <img :src="gal" alt="">
+                                    <div class="overlay-link"><a :href="gal" class="lightbox-image"
+                                            data-fancybox="gallery"><span class="fa fa-plus"></span></a></div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget contact-widget">
+                        <h4>Get In Touch</h4>
+                        <div class="text">Welcome to Alloggio, where comfort
+                            is everything.</div>
+                        <ul>
+                            <li>
+                                <i class="fal fa-phone"></i>
+                                <a href="#">
+                                    {{ computedGeneralInfo && computedGeneralInfo.phone[0]}}
+
+                                </a>
+                            </li>
+                            <li>
+                                <i class="fal fa-envelope"></i>
+                                <a href="#">
+                                    {{ computedGeneralInfo && computedGeneralInfo.email[0] }}
+                                </a>
+                            </li>
+                            <li>
+                                <i class="fal fa-map-marker-alt"></i>
+                                {{ computedGeneralInfo && computedGeneralInfo.address }}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--Search Popup-->
+        <div id="search-popup" class="search-popup">
+            <div class="close-search theme-btn"><i class="far fa-times"></i></div>
+            <div class="popup-inner">
+                <div class="overlay-layer"></div>
+                <div class="search-form">
+                    <form method="post" action="index.html">
+                        <div class="form-group">
+                            <fieldset>
+                                <input type="search" class="form-control" name="search-input" value=""
+                                    placeholder="Type & Enter" required>
+                            </fieldset>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bnner Section -->
+        <section class="banner-section">
+            <div class="shape"><img src="assets/images/shape/shape-3.png" alt=""></div>
+            <div class="big-title">Booking</div>
+            <div class="swiper-container banner-slider">
+                <div class="swiper-wrapper">
+                    <!-- Slide Item -->
+                    <div class="swiper-slide" v-for="(slid, i) in computedSliders" :key="'slid'+i">
+                        <div class="content-outer">
+                            <div class="content-box">
+                                <div class="inner">
+                                    <div class="logo"><img src="assets/images/icons/image-2.png" alt=""></div>
+                                    <h1 class="banner-title">
+                                        Amazing Suite <br>
+                                        With River View <br>
+                                        & Lot Of Services
+                                    </h1>
+                                    <div class="link-box">
+                                        <a href="rooms.html" class="theme-btn btn-style-one"><span>View Our
+                                                Rooms</span></a>
+                                    </div>
+                                </div>
+                                <div class="image-box">
+                                    <div class="image"><img :src="slid" alt=""></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide Item -->
+                    <!-- <div class="swiper-slide">
+                        <div class="content-outer">
+                            <div class="content-box">
+                                <div class="inner">
+                                    <div class="logo"><img src="assets/images/icons/image-2.png" alt=""></div>
+                                    <h1 class="banner-title">Amazing Suite <br>
+                                        With River View <br>
+                                        & Lot Of Services</h1>
+                                    <div class="link-box">
+                                        <a href="rooms.html" class="theme-btn btn-style-one"><span>View Our
+                                                Rooms</span></a>
+                                    </div>
+                                </div>
+                                <div class="image-box">
+                                    <div class="image"><img src="assets/images/resource/image-1.png" alt=""></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+            <div class="banner-slider-nav">
+                <div class="banner-slider-control banner-slider-button-prev"><span><i
+                            class="fas fa-arrow-right"></i></span></div>
+                <div class="banner-slider-control banner-slider-button-next"><span><i
+                            class="fas fa-arrow-right"></i></span> </div>
+            </div>
+        </section>
+        <!-- End Bnner Section -->
+        <!-- section twenty-four -->
+        <section class="section-twenty-four">
+            <div class="auto-container">
+                <div class="image-icon text-center mb-20"><img src="assets/images/icons/image-2.png" alt=""></div>
+                <h2 class="sec-title text-center mb-20">Welcome To Our <span class="theme-color">King Hotel</span></h2>
+                <div class="text text-center">We Have Over 40 Payment Ways for Locking the Lowest Room Rates. No Credit
+                    Card Needed! Read Reviews <br> from Verified Guests. Easy to Modify Plans. Photos & Reviews. Last
+                    <br>Minute Hotel Deals.
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="block-twenty-four">
+                            <div class="image"><img src="assets/images/resource/image-27.jpg" alt=""></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="block-twenty-four">
+                            <div class="image"><img src="assets/images/resource/image-28.jpg" alt=""></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="block-twenty-four">
+                            <div class="image"><img src="assets/images/resource/image-29.jpg" alt=""></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- section fourteen -->
+        <section class="section-fourteen" id="services-section">
+            <div class="auto-container">
+                <div class="image"><img src="assets/images/resource/image-13.png" alt=""></div>
+                <h2 class="sec-title">Core Features</h2>
+                <div class="row">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="block-fourteen">
+                            <div class="icon"><i class="flaticon-wifi-signal"></i></div>
+                            <h3>High Speed Wifi</h3>
+                            <div class="icon-border"></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="block-fourteen">
+                            <div class="icon"><i class="flaticon-laundry"></i></div>
+                            <h3>Loundry <br> Service</h3>
+                            <div class="icon-border"></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="block-fourteen">
+                            <div class="icon"><i class="flaticon-massage"></i></div>
+                            <h3>Spa & <br> Salon</h3>
+                            <div class="icon-border"></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="block-fourteen">
+                            <div class="icon"><i class="flaticon-game-controller"></i></div>
+                            <h3>Pool Party <br> Anytime</h3>
+                            <div class="icon-border"></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="block-fourteen">
+                            <div class="icon"><i class="flaticon-weights"></i></div>
+                            <h3>Dinks & <br> Bar</h3>
+                            <div class="icon-border"></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="block-fourteen">
+                            <div class="icon"><i class="flaticon-croissant"></i></div>
+                            <h3>Restaurant <br> Foods</h3>
+                            <div class="icon-border"></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="block-fourteen">
+                            <div class="icon"><i class="flaticon-conference-1"></i></div>
+                            <h3>Conference <br> Room</h3>
+                            <div class="icon-border"></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="block-fourteen">
+                            <div class="icon"><i class="flaticon-plane"></i></div>
+                            <h3>Transport <br> Facilities</h3>
+                            <div class="icon-border"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- section twenty-five -->
+        <section class="section-twenty-five">
+            <div class="auto-container">
+                <div class="big-title">{{ computedRoomPage && computedRoomPage.name }}</div>
+                <div class="sub-title text-center">{{ computedRoomPage && computedRoomPage.name }}</div>
+                <h2 class="sec-title text-center">{{ computedRoomPage && computedRoomPage.customTitle }}</h2>
+                <div class="theme_carousel owl-theme owl-carousel"
+                    data-options='{"loop": true, "margin": 30, "autoheight":true, "lazyload":true, "nav": true, "dots": true, "autoplay": true, "autoplayTimeout": 6000, "smartSpeed": 300, "responsive":{ "0" :{ "items": "1" }, "768" :{ "items" : "2" } , "1000":{ "items" : "3" }}}'>
+                    <div class="slide-item" v-for="(room, i) in computedRooms" :key="'room'+i">
+                        <div class="block-twenty-five">
+                            <div class="image"><img :src="room.url" alt=""></div>
+                            <div class="lower-content">
+                                <div class="pricing">{{room.price }} TMT</div>
+                                <div class="icon-list">
+                                    <ul>
+                                        <li>
+                                            <i class="flaticon-user"></i>
+                                            <h4>Capacity</h4>
+                                            <div class="text">{{room.capacity}} Person</div>
+                                        </li>
+                                        <li>
+                                            <i class="flaticon-preview"></i>
+                                            <h4>Size</h4>
+                                            <div class="text">{{room.size}}m<sup>2</sup></div>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                                <h3>{{room.name}}</h3>
+                                <a href="room.html" class="theme-btn btn-style-four"><span>View Room</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="slide-item">
+                        <div class="block-twenty-five">
+                            <div class="image"><img src="assets/images/resource/image-31.jpg" alt=""></div>
+                            <div class="lower-content">
+                                <div class="pricing">150/Night</div>
+                                <div class="icon-list">
+                                    <ul>
+                                        <li>
+                                            <i class="flaticon-user"></i>
+                                            <h4>Capacity</h4>
+                                            <div class="text">4 Person</div>
+                                        </li>
+                                        <li>
+                                            <i class="flaticon-preview"></i>
+                                            <h4>Size</h4>
+                                            <div class="text">600sqm</div>
+                                        </li>
+                                        <li>
+                                            <i class="flaticon-view"></i>
+                                            <h4>View</h4>
+                                            <div class="text">City, Ocean</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <h3>Delux Queen Luxury Room</h3>
+                                <a href="room-details.html" class="theme-btn btn-style-four"><span>View Room</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide-item">
+                        <div class="block-twenty-five">
+                            <div class="image"><img src="assets/images/resource/image-32.jpg" alt=""></div>
+                            <div class="lower-content">
+                                <div class="pricing">150/Night</div>
+                                <div class="icon-list">
+                                    <ul>
+                                        <li>
+                                            <i class="flaticon-user"></i>
+                                            <h4>Capacity</h4>
+                                            <div class="text">4 Person</div>
+                                        </li>
+                                        <li>
+                                            <i class="flaticon-preview"></i>
+                                            <h4>Size</h4>
+                                            <div class="text">600sqm</div>
+                                        </li>
+                                        <li>
+                                            <i class="flaticon-view"></i>
+                                            <h4>View</h4>
+                                            <div class="text">City, Ocean</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <h3>Delux Queen Luxury Room</h3>
+                                <a href="room-details.html" class="theme-btn btn-style-four"><span>View Room</span></a>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </section> -->
+        <!-- testimonials section -->
+        <section class="testimonials-section">
+            <div class="auto-container">
+                <div class="top-content">
+                    <div class="sec-title text-center mb-30">
+                        <div class="sub-title">Testimonials</div>
+                        <h2 class="sec-title">User Feedbacks</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="theme_carousel owl-theme owl-carousel"
+                        data-options='{"loop": true, "center": false, "margin": 0, "autoheight":true, "lazyload":true, "nav": true, "dots": true, "autoplay": true, "autoplayTimeout": 6000, "smartSpeed": 1000, "responsive":{ "0" :{ "items": "1" }, "600" :{ "items" : "1" }, "768" :{ "items" : "1" } , "992":{ "items" : "1" }, "1200":{ "items" : "3" }}}'>
+                        <div class="col-lg-12 block-eight text-center">
+                            <div class="icon"><i class="flaticon-martini"></i></div>
+                            <div class="inner-box">
+                                <div class="author-info">
+                                    <div class="thumb"><img src="assets/images/resource/image-8.png" alt=""></div>
+                                    <div class="rating-info">
+                                        <div class="rating">
+                                            <span class="fas fa-star"></span>
+                                            <span class="fas fa-star"></span>
+                                            <span class="fas fa-star"></span>
+                                            <span class="fas fa-star"></span>
+                                            <span class="far fa-star"></span>
+                                        </div>
+                                    </div>
+                                    <h4>“ Quality Drinks & Food ”</h4>
+                                </div>
+                                <div class="content">
+                                    <div class="text">Lorem ipsum dolor sit amet, consecte <br> tur adipiscing elit, sed
+                                        do eiusmod <br> tempor incididunt.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 block-eight text-center">
+                            <div class="icon"><i class="flaticon-conference"></i></div>
+                            <div class="inner-box">
+                                <div class="author-info">
+                                    <div class="thumb"><img src="assets/images/resource/image-9.png" alt=""></div>
+                                    <div class="rating-info">
+                                        <div class="rating">
+                                            <span class="fas fa-star"></span>
+                                            <span class="fas fa-star"></span>
+                                            <span class="fas fa-star"></span>
+                                            <span class="fas fa-star"></span>
+                                            <span class="far fa-star"></span>
+                                        </div>
+                                    </div>
+                                    <h4>“ Dive & Swimming ”</h4>
+                                </div>
+                                <div class="content">
+                                    <div class="text">Lorem ipsum dolor sit amet, consecte <br> tur adipiscing elit, sed
+                                        do eiusmod <br> tempor incididunt.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 block-eight text-center">
+                            <div class="icon"><i class="flaticon-conference-1"></i></div>
+                            <div class="inner-box">
+                                <div class="author-info">
+                                    <div class="thumb"><img src="assets/images/resource/image-10.png" alt=""></div>
+                                    <div class="rating-info">
+                                        <div class="rating">
+                                            <span class="fas fa-star"></span>
+                                            <span class="fas fa-star"></span>
+                                            <span class="fas fa-star"></span>
+                                            <span class="fas fa-star"></span>
+                                            <span class="far fa-star"></span>
+                                        </div>
+                                    </div>
+                                    <h4>“ Easy Transport ”</h4>
+                                </div>
+                                <div class="content">
+                                    <div class="text">Lorem ipsum dolor sit amet, consecte <br> tur adipiscing elit, sed
+                                        do eiusmod <br> tempor incididunt.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 block-eight text-center">
+                            <div class="icon"><i class="flaticon-martini"></i></div>
+                            <div class="inner-box">
+                                <div class="author-info">
+                                    <div class="thumb"><img src="assets/images/resource/image-8.png" alt=""></div>
+                                    <div class="rating-info">
+                                        <div class="rating">
+                                            <span class="fas fa-star"></span>
+                                            <span class="fas fa-star"></span>
+                                            <span class="fas fa-star"></span>
+                                            <span class="fas fa-star"></span>
+                                            <span class="far fa-star"></span>
+                                        </div>
+                                    </div>
+                                    <h4>“ Quality Drinks & Food ”</h4>
+                                </div>
+                                <div class="content">
+                                    <div class="text">Lorem ipsum dolor sit amet, consecte <br> tur adipiscing elit, sed
+                                        do eiusmod <br> tempor incididunt.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 block-eight text-center">
+                            <div class="icon"><i class="flaticon-conference"></i></div>
+                            <div class="inner-box">
+                                <div class="author-info">
+                                    <div class="thumb"><img src="assets/images/resource/image-9.png" alt=""></div>
+                                    <div class="rating-info">
+                                        <div class="rating">
+                                            <span class="fas fa-star"></span>
+                                            <span class="fas fa-star"></span>
+                                            <span class="fas fa-star"></span>
+                                            <span class="fas fa-star"></span>
+                                            <span class="far fa-star"></span>
+                                        </div>
+                                    </div>
+                                    <h4>“ Dive & Swimming ”</h4>
+                                </div>
+                                <div class="content">
+                                    <div class="text">Lorem ipsum dolor sit amet, consecte <br> tur adipiscing elit, sed
+                                        do eiusmod <br> tempor incididunt.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 block-eight text-center">
+                            <div class="icon"><i class="flaticon-conference-1"></i></div>
+                            <div class="inner-box">
+                                <div class="author-info">
+                                    <div class="thumb"><img src="assets/images/resource/image-10.png" alt=""></div>
+                                    <div class="rating-info">
+                                        <div class="rating">
+                                            <span class="fas fa-star"></span>
+                                            <span class="fas fa-star"></span>
+                                            <span class="fas fa-star"></span>
+                                            <span class="fas fa-star"></span>
+                                            <span class="far fa-star"></span>
+                                        </div>
+                                    </div>
+                                    <h4>“ Easy Transport ”</h4>
+                                </div>
+                                <div class="content">
+                                    <div class="text">Lorem ipsum dolor sit amet, consecte <br> tur adipiscing elit, sed
+                                        do eiusmod <br> tempor incididunt.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- section ten -->
+        <section class="section-ten">
+            <div class="auto-container">
+                <div class="block-eleven" style="background-image: url(assets/images/resource/image-12.jpg);">
+                    <div class="inner-box text-center">
+                        <div class="logo"><img src="assets/images/resource/image-11.png" alt=""></div>
+                        <h5>Late Breakfast Until 10Am</h5>
+                        <a href="menu.html" class="theme-btn btn-style-one"><span>Breakfast Menu</span></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--footer section  -->
+        <footer class="main-footer">
+            <div class="auto-container">
+                <div class="widget-wrapper">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6">
+                            <div class="footer-logo"><img src="assets/images/footer-logo.png" alt=""></div>
+                        </div>
+                        <div class="column col-lg-3 col-md-6">
+                            <div class="widget links-widget">
+                                <h4>Pages</h4>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <ul>
+                                            <li>
+                                                <a href="index.html">
+                                                    {{ computedNavList && computedNavList.home }}
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="rooms.html">
+                                                    {{ computedNavList && computedNavList.room }}
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="gallery.html">
+                                                    {{ computedNavList && computedNavList.gallery }}
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="menu.html">
+                                                    {{ computedNavList && computedNavList.menu }}
+                                                </a>
+                                            </li>
+                                            <li><a href="contact.html">Contact</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <ul>
+                                            <li><a href="#services-section">Services</a></li>
+                                            <li><a href="menu.html">Our Menus</a></li>
+                                            <!-- <li><a href="#">Shop</a></li> -->
+                                            <li><a href="contact.html">Contacts</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="widget text-widget">
+                                <h4>Our Awards</h4>
+                                <div class="text">When your people get up every day <br> wanting to come to work.</div>
+                                <!-- <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="logo"><img src="assets/images/resource/image-15.png" alt=""></div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="logo"><img src="assets/images/resource/image-16.png" alt=""></div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="logo"><img src="assets/images/resource/image-17.png" alt=""></div>
+                                    </div>
+                                </div> -->
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="widget contact-widget">
+                                <h4>Get In Touch</h4>
+                                <div class="text">Welcome to Alloggio, where comfort
+                                    is everything.</div>
+                                <ul>
+                                    <li><i class="fal fa-phone"></i><a href="#">{{computedGeneralInfo &&
+                                            computedGeneralInfo.phone[0]}}</a></li>
+                                    <li><i class="fal fa-envelope"></i><a
+                                            href="mailto:info@webmail.com">{{computedGeneralInfo &&
+                                            computedGeneralInfo.email[0]}}</a></li>
+                                    <li><i class="fal fa-map-marker-alt"></i> {{computedGeneralInfo &&
+                                        computedGeneralInfo.address }} </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <div class="auto-container">
+                    <div class="wrapper-box">
+                        <div class="copyright">
+                            <div class="text">Copyright <a target="_blank" style="color: white"
+                                    href="http://pikir.biz">Pikir</a>. All right
+                                reserved.</div>
+                        </div>
+                        <!-- <div class="brand-logo">
+                            <div class="theme_carousel owl-theme owl-carousel"
+                                data-options='{"loop": true, "center": false, "margin": 30, "autoheight":true, "lazyload":true, "nav": true, "dots": true, "autoplay": true, "autoplayTimeout": 6000, "smartSpeed": 1000, "responsive":{ "0" :{ "items": "2" }, "480" :{ "items" : "3" }, "600" :{ "items" : "4" }, "768" :{ "items" : "2" } , "992":{ "items" : "4" }, "1200":{ "items" : "4" }}}'>
+                                <div class="logo"><img src="assets/images/resource/image-18.png" alt=""></div>
+                                <div class="logo"><img src="assets/images/resource/image-19.png" alt=""></div>
+                                <div class="logo"><img src="assets/images/resource/image-20.png" alt=""></div>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+
+
+    <!--Scroll to top-->
+    <div class="scroll-to-top scroll-to-target" data-target="html"><span class="fas fa-arrow-up"></span></div>
+
+    <script src="./assets/js/index.js"></script>
+    <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/jquery.fancybox.js"></script>
+    <script src="assets/js/isotope.js"></script>
+    <script src="assets/js/owl.js"></script>
+    <script src="assets/js/appear.js"></script>
+    <script src="assets/js/wow.js"></script>
+    <script src="assets/js/scrollbar.js"></script>
+    <script src="assets/js/TweenMax.min.js"></script>
+    <script src="assets/js/swiper.min.js"></script>
+    <script src="assets/js/jquery.ajaxchimp.min.js"></script>
+    <script src="assets/js/parallax-scroll.js"></script>
+    <script src="assets/js/jquery-ui-1.9.2.custom.min.js"></script>
+    <script src="assets/js/jquery.nice-select.min.js"></script>
+
+    <script src="assets/js/active.js"></script>
+
+
+
+</body>
+
+</html>
