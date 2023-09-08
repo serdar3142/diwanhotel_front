@@ -1,37 +1,3 @@
-/* Kingho HTML Template  */
-
-/************ TABLE OF CONTENTS ***************
-1. Fonts
-2. Reset css
-3. Global css
-4. Header Section
-5. Banner Section
-6. Reservation form
-7. About Section
-8. Feature
-9. Sponsor
-10. Room
-11. Gallery
-12. Testimonial
-13. CTA
-14. Blog
-15. Footer
-16. Funfact
-17. Faq
-18. Pricing plan
-19. Newsletter
-20. Gallery
-21. Page Title
-22. Feature
-23. Video Section
-24. Services
-25. Menu
-26. Places
-27. Resturant
-28. Contact form
-
-
-
 /*** 
 
 ====================================================================
@@ -79,8 +45,6 @@
 
 /* 
 
-font-family: 'Playfair Display', serif;
-font-family: 'Roboto', sans-serif;
 
 */
 
@@ -229,6 +193,11 @@ button {
     max-width: 1200px;
     padding: 0px 15px;
     margin: 0 auto;
+}
+
+
+.auto-container .logo img {
+    width: 140px;
 }
 
 ul,
@@ -1613,6 +1582,11 @@ header.main-header.header-style-one.style-two {
     text-align: center;
 }
 
+.mobile-menu .nav-logo img {
+    width: 105px;
+
+}
+
 .mobile-menu-visible {
     overflow: hidden;
 }
@@ -1829,6 +1803,12 @@ header.main-header.header-style-one.style-two {
 
 .hidden-sidebar .logo {
     margin-bottom: 35px;
+    width: 140px;
+
+}
+
+.hidden-sidebar .logo img {
+    width: 100%;
 }
 
 .hidden-sidebar .wrapper-box {
@@ -2354,7 +2334,7 @@ section.service-section .title-box {
 }
 
 h1.banner-title {
-    font-size: 80px;
+    font-size: 60px;
     letter-spacing: -2px;
     line-height: 80px;
     color: #222222;
@@ -6075,6 +6055,7 @@ section.map-section {
     height: 60px;
     border-radius: 0;
     padding: 0 25px;
+    transition: all 0.2s ease;
 }
 
 .contact-form.style-two textarea {
@@ -6082,6 +6063,7 @@ section.map-section {
     height: 120px;
     border: 2px solid #f3f3f3;
     padding: 15px 25px;
+    transition: all 0.2s ease;
 }
 
 .contact-form.style-two input.form-control:focus {
@@ -6113,6 +6095,13 @@ section.map-section {
     padding: 80px 95px;
     filter: drop-shadow(0px 14px 14px rgba(0, 0, 0, 0.04));
     background-color: #ffffff;
+}
+
+@media (max-width: 991px) {
+    .contact-block {
+        padding: 0px;
+        margin-left: 0px;
+    }
 }
 
 section.contact-section {
@@ -6243,6 +6232,7 @@ footer.main-footer {
 
 .footer-logo {
     margin-bottom: 50px;
+    width: 140px;
 }
 
 .widget.links-widget {
@@ -8797,4 +8787,47 @@ li {
 #touch:checked~label {
     background-color: #FFF;
     color: black;
+}
+
+.custom__message {
+    width: 100%;
+    height: 100%;
+    display: none;
+    align-items: center;
+    transition: all 0.2s ease;
+}
+
+.custom__message.error {
+    color: red;
+}
+
+.custom__message.success {
+    color: green;
+}
+
+.lang__list {
+    display: none;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+}
+
+
+
+.lang__list .item {
+    line-height: 24px;
+    padding: 10px 0;
+    font-size: 15px;
+    font-weight: 500;
+    color: #8b8080;
+    text-transform: uppercase;
+    -webkit-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease;
+    cursor: pointer;
+    text-transform: capitalize;
+}
+
+.lang__list .active {
+    color: #ffffff;
 }

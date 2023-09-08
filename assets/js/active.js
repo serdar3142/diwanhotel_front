@@ -1,7 +1,6 @@
 (function ($) {
 
 	$(window).on('load', function () {
-		console.log("preloader");
 		$(".preloader").delay(500).fadeOut();
 	});
 	"use strict";
@@ -161,9 +160,9 @@
 		//Mobile Nav Hide Show
 		if ($('.mobile-menu').length) {
 
-			var mobileMenuContent = $('.main-header .nav-outer .main-menu').html();
-			$('.mobile-menu .menu-box .menu-outer').append(mobileMenuContent);
-			$('.sticky-header .main-menu').append(mobileMenuContent);
+			// var mobileMenuContent = $('.main-header .nav-outer .main-menu').html();
+			// $('.mobile-menu .menu-box .menu-outer').append(mobileMenuContent);
+			// $('.sticky-header .main-menu').append(mobileMenuContent);
 
 			//Dropdown Button
 			$('.mobile-menu li.dropdown .dropdown-btn').on('click', function () {
@@ -276,15 +275,17 @@
 		/////////////////////////////
 		//Universal Code for All Owl Carousel Sliders
 		/////////////////////////////
+		setTimeout(() => {
 
-		if ($('.theme_carousel').length) {
-			$(".theme_carousel").each(function (index) {
-				var $owlAttr = {},
-					$extraAttr = $(this).data("options");
-				$.extend($owlAttr, $extraAttr);
-				$(this).owlCarousel($owlAttr);
-			});
-		}
+			if ($('.theme_carousel').length) {
+				$(".theme_carousel").each(function (index) {
+					var $owlAttr = {},
+						$extraAttr = $(this).data("options");
+					$.extend($owlAttr, $extraAttr);
+					$(this).owlCarousel($owlAttr);
+				});
+			}
+		}, 2000);
 
 		// Donation Progress Bar
 		if ($('.count-bar').length) {

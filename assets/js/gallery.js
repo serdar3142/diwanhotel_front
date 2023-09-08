@@ -1,10 +1,7 @@
 const api = "http://localhost:5051"
 // const api = "http://api-madoweb.pikir.biz"
 const mainLang = localStorage.getItem("lang") ?? "tk"
-function closeDropdown() {
 
-    console.log('blur event');
-}
 const app = Vue.createApp({
     data() {
         return {
@@ -97,6 +94,19 @@ const app = Vue.createApp({
             }
             return custom
         },
+        computedGalleries() {
+            let custom = []
+            if (this.galleries && this.galleries.length) {
+                const customGallery = this.galleries.filter(item => item.galleryType.type !== 'instagram') ?? []
+                for (let i = 0; i < customGallery.length; i++) {
+                    const item = customGallery[i];
+                    custom.push(
+                        `${api}/images/${item['url']}`
+                    )
+                }
+            }
+            return custom
+        },
         computedInstaGalleries() {
             let custom = []
             if (this.galleries && this.galleries.length) {
@@ -123,5 +133,5 @@ const app = Vue.createApp({
         },
     },
 });
-app.mount('#rooms');
+app.mount('#gallery');
 

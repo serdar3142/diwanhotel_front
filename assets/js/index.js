@@ -1,9 +1,9 @@
-const api = "http://localhost:5051"
-// const api = "http://api-madoweb.pikir.biz"
-const mainLang = localStorage.getItem("lang") ?? "tk"
-function closeDropdown() {
-
-    console.log('blur event');
+const api = "http://192.168.1.146:5055"
+//const api = "http://diwan-api.pikir.biz"
+let mainLang = localStorage.getItem("lang") ?? "ru"
+function changeLang(value) {
+    localStorage.setItem("lang", value)
+    mainLang = value
 }
 const app = Vue.createApp({
     data() {
@@ -14,6 +14,7 @@ const app = Vue.createApp({
             galleries: [],
             sliders: [],
             generalInfo: {},
+            menus: []
 
         }
     },
@@ -37,6 +38,9 @@ const app = Vue.createApp({
             axios.get(`${api}/api/galleries`).then(result => {
                 this.galleries = result.data
             })
+            axios.get(`${api}/api/products`).then(result => {
+                this.menus = result.data
+            })
         })
     },
 
@@ -45,7 +49,6 @@ const app = Vue.createApp({
         computedLang() {
             return messages[this.lang].lang
         },
-
         messageCom() {
             return messages[this.lang];
         },
@@ -68,22 +71,38 @@ const app = Vue.createApp({
             })
             return custom
         },
+        showNavbar() {
+            if (Object.keys(this.computedNavList).length > 0) {
+                return true
+            } else {
+                return false
+            }
+        },
+
         computedSliders() {
             return this.sliders.map(item => {
                 return `${api}/images/${item.url}`
             })
         },
 
-
-        // computedGalleryPage() {
-        //     const gallery = this.pages.find(item => item.type === 'gallery') ?? {}
-        //     if (Object.keys(gallery).length > 0) {
-        //         return {
-        //             galleryTitle: gallery[`title_${this.lang}`],
-        //             text: gallery[`text_${this.lang}`],
-        //         }
-        //     }
-        // },
+        computedAboutPage() {
+            const menu = this.pages.find(item => item.type === 'about') ?? {}
+            if (Object.keys(menu).length > 0) {
+                return {
+                    name: menu[`name_${this.lang}`],
+                    customTitle: menu[`title_${this.lang}`],
+                }
+            }
+        },
+        computedGalleryPage() {
+            const gallery = this.pages.find(item => item.type === 'gallery') ?? {}
+            if (Object.keys(gallery).length > 0) {
+                return {
+                    name: gallery[`name_${this.lang}`],
+                    customTitle: gallery[`title_${this.lang}`],
+                }
+            }
+        },
         computedRoomPage() {
             const room = this.pages.find(item => item.type === 'room') ?? {}
             if (Object.keys(room).length > 0) {
@@ -93,55 +112,34 @@ const app = Vue.createApp({
                 }
             }
         },
-        // computedBreakfasts() {
-        //     const items = this.products.filter(item => item.type === "breakfast")
-        //     let custom = []
-        //     if (items.length) {
-        //         let length = items.length > 5 ? 5 : items.length
-        //         for (let i = 0; i < length; i++) {
-        //             const item = items[i];
-        //             custom.push({
-        //                 name: item['name_' + this.lang],
-        //                 customTitle: item['title_' + this.lang],
-        //                 url: `${api}/images/${item['url']}`
-        //             })
-        //         }
-        //         return custom
-        //     }
-        // },
-        // computedLunches() {
-        //     const items = this.products.filter(item => item.type === "lunch")
-        //     let custom = []
-        //     if (items.length) {
-        //         let length = items.length > 5 ? 5 : items.length
-        //         for (let i = 0; i < length; i++) {
-        //             const item = items[i];
-        //             custom.push({
-        //                 name: item["name_" + this.lang],
-        //                 customTitle: item["title_" + this.lang],
-        //                 url: `${api}/images/${item['url']}`
-        //             })
-        //         }
-        //         return custom
-        //     }
-        // },
-        // computedDinners() {
-        //     const items = this.products.filter(item => item.type === "dinner")
-        //     let custom = []
-        //     if (items.length) {
-        //         let length = items.length > 5 ? 5 : items.length
-        //         for (let i = 0; i < length; i++) {
-        //             const item = items[i];
-        //             custom.push({
-        //                 name: item['name_' + this.lang],
-        //                 customTitle: item['title_' + this.lang],
-        //                 url: `${api}/images/${item['url']}`
-        //             })
-        //         }
-        //         return custom
-        //     }
-        // },
+        computedMenus() {
+            let custom = []
+            for (let i = 0; i < this.menus.length; i++) {
+                const item = this.menus[i];
+                custom.push({
+                    name: item['name_' + this.lang],
+                    price: item['price'],
+                    url: `${api}/images/${item['url']}`
+                })
+            }
+            return custom
+        },
+
         computedRooms() {
+            let custom = []
+            for (let i = 0; i < this.rooms.length; i++) {
+                const item = this.rooms[i];
+                custom.push({
+                    name: item['name_' + this.lang],
+                    capacity: item['capacity'],
+                    size: item['size'],
+                    price: item['price'],
+                    url: `${api}/images/${item['url']}`
+                })
+            }
+            return custom
+        },
+        computedIndexRooms() {
             let custom = []
             const looplen = this.rooms && this.rooms.length > 3 ? 3 : this.rooms.length
             for (let i = 0; i < looplen; i++) {
@@ -170,16 +168,87 @@ const app = Vue.createApp({
             }
             return custom
         },
+        computedGalleries() {
+            let custom = []
+            if (this.galleries && this.galleries.length) {
+                const customGallery = this.galleries.filter(item => item.galleryType.type !== 'instagram') ?? []
+                for (let i = 0; i < customGallery.length; i++) {
+                    const item = customGallery[i];
+                    custom.push(
+                        `${api}/images/${item['url']}`
+                    )
+                }
+            }
+            return custom
+        },
     },
     methods: {
+        toogleMobileNav() {
+            const elMobile = document.getElementById("mobileMenuId")
+            const langMobile = elMobile.getElementsByClassName("lang__list")[0]
+            langMobile.style.display = "flex"
+        },
         changeLang(value) {
+
             localStorage.setItem("lang", value)
             this.lang = value
             if (this.$refs.dropdownRef) {
                 this.$refs.dropdownRef.checked = false
             }
+            const body = document.getElementsByTagName("body")[0]
+            if (body.classList.contains("mobile-menu-visible")) {
+                this.$refs.closeBtn.click()
+            }
 
         },
+        sendEmail() {
+            let fullname = this.$refs.fullname.value;
+            let email = this.$refs.email.value;
+            let guests = this.$refs.guests.value;
+            let date = this.$refs.date.value;
+            let message = this.$refs.message.value;
+
+            const data = {
+                fullname: fullname,
+                email: email,
+                guests: guests,
+                date: date,
+                message: message
+            }
+            let error = false
+            for (const key in data) {
+                const element = data[key];
+                if (element === "" && key !== "message") {
+                    this.$refs[key].style.borderColor = "red";
+                    this.$refs.requiredTag.style.display = "flex"
+                    error = true
+                }
+
+            }
+            if (error === false) {
+                this.$refs.requiredTag.style.display = "none"
+                this.$refs.btnText.style.display = "none"
+                this.$refs.btnLoading.style.display = "inline-block"
+                axios.post(`${api}/api/EmailSender/SendEmail`, data).then(result => {
+                    this.$refs.successTag.style.display = "flex"
+                    this.$refs.btnLoading.style.display = "none"
+                    this.$refs.btnText.style.display = "block"
+                    for (const key in data) {
+                        this.$refs[key].value = ""
+                    }
+                    setTimeout(() => {
+                        this.$refs.successTag.style.display = "none"
+                    }, 5000);
+                }).catch(() => {
+                    this.$refs.errorTag.style.display = "flex"
+                    this.$refs.btnLoading.style.display = "none"
+                    this.$refs.btnText.style.display = "block"
+                    setTimeout(() => {
+                        this.$refs.errorTag.style.display = "none"
+                    }, 5000);
+                })
+            }
+        }
     },
 });
 app.mount('#app');

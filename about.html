@@ -28,9 +28,11 @@
     <script src="./assets/js/vue.global.js"></script>
     <script src="./assets/js/vue.global.prod.js"></script>
     <script src="./assets/js/messages.js"></script>
+
 </head>
 
 <body id="app">
+
     <div class="page-wrapper">
 
         <!-- preloader -->
@@ -56,6 +58,7 @@
                 </div>
             </div>
         </div>
+
 
         <!-- Main Header -->
         <header class="main-header header-style-one style-two">
@@ -96,8 +99,8 @@
                 <div class="text-center">
                     <!--Logo-->
                     <div class="logo-box main-logo">
-                        <div class="logo"><a href="index.html">
-                                <img :src="computedGeneralInfo && computedGeneralInfo.logo" alt=""></a></div>
+                        <div class="logo"><a href="index.html"><img
+                                    :src="computedGeneralInfo && computedGeneralInfo.logo" alt=""></a></div>
                     </div>
                 </div>
             </div>
@@ -121,7 +124,7 @@
                                         <li><a href="rooms.html">{{computedNavList && computedNavList.room}}</a></li>
                                         <li><a href="gallery.html">{{computedNavList && computedNavList.gallery}}</a>
                                         </li>
-                                        <li><a href="contact.html">Contact</a>
+                                        <li><a href="contact.html">{{messageCom && messageCom.navContact}}</a>
                                         </li>
 
                                     </ul>
@@ -138,7 +141,6 @@
             </div>
             <!--End Header Upper-->
 
-            <!-- Sticky Header  -->
             <div class="sticky-header">
                 <div class="header-upper">
                     <div class="auto-container">
@@ -296,139 +298,154 @@
         </div>
 
         <!-- Page Title -->
-        <section class="page-title" style="background-image: url(assets/images/header-contact.jpg);">
+        <section class="page-title" style="background-image: url(assets/images/header-about.jpg);">
             <div class="auto-container">
                 <div class="content-box">
                     <div class="content-wrapper">
+                        <!-- <ul class="bread-crumb">
+                            <li><a href="index.html">Home</a></li>
+                            <li>About</li>
+                        </ul> -->
                         <div class="title">
-                            <h1>{{messageCom && messageCom.contact.name}}</h1>
+                            <h1>{{computedAboutPage && computedAboutPage.name}}</h1>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- section fifty six -->
-        <section class="section-fifty-six">
+        <!-- section one -->
+        <section class="section-one">
             <div class="auto-container">
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="block-fifty-six">
-                            <div class="icon"><i class="flaticon-open"></i></div>
-                            <div class="icon-border"></div>
-                            <h3>{{messageCom && messageCom.contact.email}}</h3>
-                            <div class="text" v-if="computedGeneralInfo">
-                                <span v-for="(email,i) in computedGeneralInfo.email">
-                                    {{email}} <br>
-                                </span>
-                            </div>
-                        </div>
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <div class="image mb-30"><img src="assets/images/about/about-main.jpg" alt=""></div>
                     </div>
-                    <div class="col-lg-4">
-                        <div class="block-fifty-six">
-                            <div class="icon"><i class="flaticon-call-2"></i></div>
-                            <div class="icon-border"></div>
-                            <h3>{{messageCom && messageCom.contact.phone}}</h3>
-                            <div class="text" v-if="computedGeneralInfo">
-                                <span v-for="(email,i) in computedGeneralInfo.email">
-                                    {{email}} <br>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="block-fifty-six">
-                            <div class="icon"><i class="flaticon-location-2"></i></div>
-                            <div class="icon-border"></div>
-                            <h3>{{messageCom && messageCom.contact.office}}</h3>
-                            <div class="text">
-                                {{computedGeneralInfo && computedGeneralInfo.address}}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="map-section">
-            <div class="contact-map">
-                <!-- <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d787.1251454142886!2d58.372138861419536!3d37.89536062639845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f6ffd7fce0e0049%3A0x2f5c389e27643b5d!2sI%C5%9F%20merkezi!5e0!3m2!1sen!2sru!4v1692939659017!5m2!1sen!2sru"
-                    width="100%" height="800" frameborder="0" style="border:0; width: 100%" allowfullscreen=""
-                    aria-hidden="false" tabindex="0"></iframe> -->
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12588.178127365363!2d58.3867406!3d37.9293901!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f6ffd0b660a7c81%3A0x286485d794579399!2sDivan%20Hotel!5e0!3m2!1sen!2sru!4v1693031764790!5m2!1sen!2sru"
-                    width="100%" height="800" frameborder="0" style="border:0; width: 100%" allowfullscreen=""
-                    aria-hidden="false" tabindex="0"></iframe>
-            </div>
-        </section>
-
-        <section class="contact-section">
-            <div class="auto-container">
-                <div class="row">
                     <div class="col-lg-6">
-                        <div class="image"><img src="assets/images/contact-picture.jpg" alt=""></div>
-                    </div>
-                    <div class="col-sm-12 col-lg-6">
-
-                        <div class="contact-block">
-                            <div class="sub-title">{{messageCom && messageCom.contact.touch}}</div>
-                            <h2 class="sec-title mb-30">{{messageCom && messageCom.contact.appoint}}</h2>
-                            <div class="text" v-html="messageCom && messageCom.contact.tit"></div>
-
-                            <div class="contact-form style-two">
-                                <form id="contact-form">
-                                    <div class="row">
-                                        <div class="form-group  col-md-6">
-                                            <input type="text" ref="fullname" class="form-control"
-                                                :placeholder="messageCom && messageCom.contact.fullName" required>
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <input type="email" ref="email" class="form-control"
-                                                :placeholder="messageCom && messageCom.contact.email" required>
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <input type="text" ref="guests" class="form-control"
-                                                :placeholder="messageCom && messageCom.contact.guests" required>
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <input type="date" ref="date" class="form-control" name="form_subject"
-                                                value="" :placeholder="messageCom && messageCom.contact.date" required>
-                                        </div>
-                                        <div class="form-group col-md-12">
-                                            <textarea name="form_message" ref="message" class="form-control"
-                                                :placeholder="messageCom && messageCom.contact.message"></textarea>
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <button style="width: 182px;" class="theme-btn btn-style-one" type="button"
-                                                @click="sendEmail()">
-                                                <span ref="btnText">
-                                                    {{messageCom && messageCom.contact.make }}
-                                                </span>
-                                                <div style="display: none;" ref="btnLoading" class="spinner-border"
-                                                    role="status">
-                                                    <span class="sr-only">Loading...</span>
-                                                </div>
-                                            </button>
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <span class="custom__message error" ref="requiredTag">{{messageCom &&
-                                                messageCom.required}}</span>
-                                            <span class="custom__message error" ref="errorTag">{{messageCom &&
-                                                messageCom.error}}</span>
-                                            <span class="custom__message success" ref="successTag">{{messageCom &&
-                                                messageCom.success}}</span>
-                                        </div>
-                                    </div>
-                                </form>
+                        <div class="block-two style-two">
+                            <div class="image mb-10"><img style="width: 40px; height: 40px;"
+                                    src="assets/images/hotel.svg" alt=""></div>
+                            <h2 class="sec-title" v-html="messageCom && messageCom.about.tit"> </h2>
+                            <div class="text-two">{{messageCom && messageCom.about.text2}}</div>
+                            <div class="bottom-content">
+                                <div class="ratings">5</div>
+                                <div class="text-three" v-html="messageCom && messageCom.about.rating"></div>
+                                <a href="gallery.html" class="theme-btn btn-style-one dark"><span>
+                                        {{messageCom && messageCom.about.explore}}
+                                    </span></a>
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- section thirty five -->
+        <section class="section-thirty-five">
+            <div class="auto-container">
+                <div class="row">
+                    <div class="col-lg-7 order-2">
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="tab-1">
+                                <div class="block-thirty-six">
+                                    <div class="image"><img src="assets/images/about/about-rooms.jpg" alt=""></div>
+                                    <div class="text">{{messageCom && messageCom.about.roomText}}</div>
+
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="tab-2">
+                                <div class="block-thirty-six">
+                                    <div class="image"><img src="assets/images/about/about-fitness.jpg" alt=""></div>
+                                    <div class="text">{{messageCom && messageCom.about.setupText}}</div>
+
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="tab-3" role="tabpanel" aria-labelledby="tab-3">
+                                <div class="block-thirty-six">
+                                    <div class="image"><img src="assets/images/about/about-spa.jpg" alt=""></div>
+                                    <div class="text">{{messageCom && messageCom.about.transportText}}</div>
+
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="tab-4" role="tabpanel" aria-labelledby="tab-4">
+                                <div class="block-thirty-six">
+                                    <div class="image"><img src="assets/images/about/about-reception.jpg" alt=""></div>
+                                    <div class="text">{{messageCom && messageCom.about.barText}}</div>
+
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="tab-5" role="tabpanel" aria-labelledby="tab-5">
+                                <div class="block-thirty-six">
+                                    <div class="image"><img src="assets/images/about/about-restaurant.jpg" alt=""></div>
+                                    <div class="text">{{messageCom && messageCom.about.gameText}}</div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="sub-title">{{messageCom && messageCom.about.choose}}</div>
+                        <h2 class="sec-title">{{messageCom && messageCom.about.chooseUs}}</h2>
+                        <div class="nav-tab-wrapper">
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active" id="tab-1" data-bs-toggle="tab"
+                                        data-bs-target="#tab-1" type="button" role="tab" aria-controls="tab-1"
+                                        aria-selected="true">
+                                        <h4>
+                                            <i class="flaticon-room"></i>
+                                            {{messageCom && messageCom.about.room}}
+                                        </h4>
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="tab-2" data-bs-toggle="tab" data-bs-target="#tab-2"
+                                        type="button" role="tab" aria-controls="tab-2" aria-selected="false">
+                                        <h4>
+                                            <i class="flaticon-weights"></i>
+                                            <!-- <img style="width: 30px; height: 30px;" src="" alt=""> -->
+                                            {{messageCom && messageCom.about.setup}}
+                                        </h4>
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="tab-3" data-bs-toggle="tab" data-bs-target="#tab-3"
+                                        type="button" role="tab" aria-controls="tab-3" aria-selected="false">
+                                        <h4><i class="flaticon-massage"></i>{{messageCom &&
+                                            messageCom.about.transport}}
+                                        </h4>
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="tab-4" data-bs-toggle="tab" data-bs-target="#tab-4"
+                                        type="button" role="tab" aria-controls="tab-4" aria-selected="false">
+                                        <h4>
+                                            <!-- <i class="flaticon-cheers"></i> -->
+                                            <img style="width: 30px; height: 30px;" src="assets/images/payment.svg"
+                                                alt="">
+                                            {{messageCom && messageCom.about.bar}}
+                                        </h4>
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="tab-5" data-bs-toggle="tab" data-bs-target="#tab-5"
+                                        type="button" role="tab" aria-controls="tab-5" aria-selected="false">
+                                        <h4>
+                                            <!-- <i class="flaticon-croissant"></i> -->
+                                            <img style="width: 30px; height: 30px;" src="assets/images/rest.svg" alt="">
+                                            {{messageCom && messageCom.about.game}}
+                                        </h4>
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!--footer section  -->
         <footer class="main-footer">
             <div class="auto-container">
                 <div class="widget-wrapper">
@@ -511,12 +528,14 @@
             </div>
         </footer>
 
+
+
     </div>
     <!--End pagewrapper-->
 
     <!--Scroll to top-->
     <div class="scroll-to-top scroll-to-target" data-target="html"><span class="fas fa-arrow-up"></span></div>
-    <script src="./assets/js/index.js"></script>
+    <script src="assets/js/index.js"></script>
     <script src="assets/js/jquery.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/jquery.fancybox.js"></script>
