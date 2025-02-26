@@ -13,7 +13,8 @@ function CSRFGet() {
     })
       .then((response) => response.json())
       .then((responseData) => {
-        sessionStorage.setItem("csrf", responseData.csrf_token);
+        console.log(responseData);
+        sessionStorage.setItem("csrf", responseData.token);
       })
       .catch((error) => {
         console.log(error);
