@@ -1,503 +1,692 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8" />
     <title>Diwan Hotel</title>
     <!-- Stylesheets -->
-    <link href="assets/css/bootstrap.css" rel="stylesheet">
-    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="assets/css/style.css" rel="stylesheet" />
     <!-- Responsive File -->
-    <link href="assets/css/responsive.css" rel="stylesheet">
+    <link href="assets/css/responsive.css" rel="stylesheet" />
     <!-- Color File -->
-    <link href="assets/css/color.css" rel="stylesheet">
+    <link href="assets/css/color.css" rel="stylesheet" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap"
-        rel="stylesheet">
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
 
-    <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon">
-    <link rel="icon" href="assets/images/favicon.svg" type="image/x-icon">
+    <link
+      rel="shortcut icon"
+      href="assets/images/favicon.svg"
+      type="image/x-icon"
+    />
+    <link rel="icon" href="assets/images/favicon.svg" type="image/x-icon" />
 
     <!-- Responsive -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
     <script src="./assets/js/axios.min.js"></script>
     <script src="./assets/js/vue.global.min.js"></script>
     <script src="./assets/js/vue.global.prod.min.js"></script>
     <script src="./assets/js/messages.js"></script>
-</head>
+  </head>
 
-<body id="app">
+  <body id="app">
     <div class="page-wrapper">
-
-        <!-- preloader -->
-        <div id="preloader" class="preloader">
-            <div class="animation-preloader">
-                <div class="spinner">
-                </div>
-            </div>
-            <div class="loader">
-                <div class="row">
-                    <div class="col-3 loader-section section-left">
-                        <div class="bg"></div>
-                    </div>
-                    <div class="col-3 loader-section section-left">
-                        <div class="bg"></div>
-                    </div>
-                    <div class="col-3 loader-section section-right">
-                        <div class="bg"></div>
-                    </div>
-                    <div class="col-3 loader-section section-right">
-                        <div class="bg"></div>
-                    </div>
-                </div>
-            </div>
+      <!-- preloader -->
+      <div id="preloader" class="preloader">
+        <div class="animation-preloader">
+          <div class="spinner"></div>
         </div>
-
-        <!-- Main Header -->
-        <header class="main-header header-style-one style-two">
-            <div class="header-top">
-                <div class="auto-container">
-                    <div class="wrapper-box box-style-one">
-                        <div class="left-column">
-                            <ul class="contact-info box-style-two">
-                                <li>
-                                    <a href="#">
-                                        {{computedGeneralInfo && computedGeneralInfo.email[0] }}
-                                    </a>
-                                </li>
-                                <li>|</li>
-                                <li>
-                                    <a href="#">
-                                        {{computedGeneralInfo && computedGeneralInfo.phone[0]}}
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="right-column box-style-two">
-                            <div class="custom__dropdown">
-                                <label for="touch"><span>{{computedLang && computedLang[lang]}}</span></label>
-                                <input ref="dropdownRef" tabindex="1" onblur="closeDropdown()" type="checkbox"
-                                    id="touch">
-                                <ul class="slide">
-                                    <template v-for="(l, key) in computedLang">
-                                        <li v-if="lang !== key" @click="changeLang(key)" :key="key">{{l}}</li>
-                                    </template>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div class="loader">
+          <div class="row">
+            <div class="col-3 loader-section section-left">
+              <div class="bg"></div>
             </div>
-            <div class="auto-container">
-                <div class="text-center">
-                    <!--Logo-->
-                    <div class="logo-box main-logo">
-                        <div class="logo"><a href="index.html">
-                                <img :src="computedGeneralInfo && computedGeneralInfo.logo" alt=""></a></div>
-                    </div>
-                </div>
+            <div class="col-3 loader-section section-left">
+              <div class="bg"></div>
             </div>
-            <!-- Header Upper -->
-            <div class="header-upper">
-                <div class="auto-container">
-                    <div class="inner-container">
-
-                        <!--Nav Box-->
-                        <div class="nav-outer">
-                            <!--Mobile Navigation Toggler-->
-                            <div class="mobile-nav-toggler" @click="toogleMobileNav()"><img
-                                    src="assets/images/icons/icon-bar.png" alt=""></div>
-
-                            <!-- Main Menu -->
-                            <nav class="main-menu navbar-expand-md navbar-light">
-                                <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
-                                    <ul v-if="showNavbar" class="navigation">
-                                        <li><a href="index.html">{{computedNavList && computedNavList.home}}</a></li>
-                                        <li><a href="about.html">{{computedNavList && computedNavList.about}}</a></li>
-                                        <li><a href="rooms.html">{{computedNavList && computedNavList.room}}</a></li>
-                                        <li><a href="gallery.html">{{computedNavList && computedNavList.gallery}}</a>
-                                        </li>
-                                        <li><a href="contact.html">{{messageCom && messageCom.navContact}}</a>
-                                        </li>
-
-                                    </ul>
-                                </div>
-                            </nav>
-                        </div>
-                        <div class="right-column">
-
-                            <div class="menu-bar sidemenu-nav-toggler"><img src="assets/images/icons/icon-bar3.png"
-                                    alt=""></div>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-3 loader-section section-right">
+              <div class="bg"></div>
             </div>
-            <!--End Header Upper-->
-
-            <!-- Sticky Header  -->
-            <div class="sticky-header">
-                <div class="header-upper">
-                    <div class="auto-container">
-                        <div class="inner-container">
-
-                            <!--Nav Box-->
-                            <div class="nav-outer">
-                                <!--Mobile Navigation Toggler-->
-                                <div class="mobile-nav-toggler" @click="toogleMobileNav()"><img
-                                        src="assets/images/icons/icon-bar.png" alt="">
-                                </div>
-
-                                <!-- Main Menu -->
-                                <nav class="main-menu navbar-expand-md navbar-light">
-                                    <div class="collapse navbar-collapse show clearfix" id="NavbarSuportedContent">
-
-                                        <ul v-if="showNavbar" class="navigation">
-                                            <li><a href="index.html">{{computedNavList && computedNavList.home}}</a>
-                                            </li>
-                                            <li><a href="about.html">{{computedNavList && computedNavList.about}}</a>
-                                            </li>
-                                            <li><a href="rooms.html">{{computedNavList && computedNavList.room}}</a>
-                                            </li>
-                                            <li><a href="gallery.html">{{computedNavList &&
-                                                    computedNavList.gallery}}</a>
-                                            </li>
-                                            <li><a href="contact.html">{{messageCom && messageCom.navContact}}</a>
-                                            </li>
-
-
-                                        </ul>
-                                    </div>
-                                </nav>
-                            </div>
-                            <div class="right-column">
-
-                                <div class="menu-bar sidemenu-nav-toggler"><img src="assets/images/icons/icon-bar3.png"
-                                        alt=""></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-3 loader-section section-right">
+              <div class="bg"></div>
             </div>
-            <!-- End Sticky Menu -->
+          </div>
+        </div>
+      </div>
 
-            <!-- Mobile Menu  -->
-            <div id="mobileMenuId" class="mobile-menu">
-                <div class="menu-backdrop"></div>
-                <div ref="closeBtn" class="close-btn"><i class="icon far fa-times"></i></div>
+      <!-- Main Header -->
+      <header class="main-header header-style-one style-two">
+        <div class="header-top">
+          <div class="auto-container">
+            <div class="wrapper-box box-style-one">
+              <div class="left-column">
+                <ul class="contact-info box-style-two">
+                  <li>
+                    <a href="#">
+                      {{computedGeneralInfo && computedGeneralInfo.email[0] }}
+                    </a>
+                  </li>
+                  <li>|</li>
+                  <li>
+                    <a href="#">
+                      {{computedGeneralInfo && computedGeneralInfo.phone[0]}}
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="right-column box-style-two">
+                <div class="custom__dropdown">
+                  <label for="touch"
+                    ><span>{{computedLang && computedLang[lang]}}</span></label
+                  >
+                  <input
+                    ref="dropdownRef"
+                    tabindex="1"
+                    onblur="closeDropdown()"
+                    type="checkbox"
+                    id="touch"
+                  />
+                  <ul class="slide">
+                    <template v-for="(l, key) in computedLang">
+                      <li
+                        v-if="lang !== key"
+                        @click="changeLang(key)"
+                        :key="key"
+                      >
+                        {{l}}
+                      </li>
+                    </template>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="auto-container">
+          <div class="text-center">
+            <!--Logo-->
+            <div class="logo-box main-logo">
+              <div class="logo">
+                <a href="index.html">
+                  <img
+                    :src="computedGeneralInfo && computedGeneralInfo.logo"
+                    alt=""
+                /></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Header Upper -->
+        <div class="header-upper">
+          <div class="auto-container">
+            <div class="inner-container">
+              <!--Nav Box-->
+              <div class="nav-outer">
+                <!--Mobile Navigation Toggler-->
+                <div class="mobile-nav-toggler" @click="toogleMobileNav()">
+                  <img src="assets/images/icons/icon-bar.png" alt="" />
+                </div>
 
-                <nav class="menu-box">
-                    <div class="nav-logo"><a href="index.html"><img
-                                :src="computedGeneralInfo && computedGeneralInfo.logoWhite " alt="" title=""></a></div>
-                    <div class="menu-outer">
-                        <div class="collapse navbar-collapse show clearfix" id="NavbarSuportedContent">
-
-                            <ul v-if="showNavbar" class="navigation">
-                                <li><a href="index.html">{{computedNavList && computedNavList.home}}</a>
-                                </li>
-                                <li><a href="about.html">{{computedNavList && computedNavList.about}}</a>
-                                </li>
-                                <li><a href="rooms.html">{{computedNavList && computedNavList.room}}</a>
-                                </li>
-                                <li><a href="gallery.html">{{computedNavList &&
-                                        computedNavList.gallery}}</a>
-                                </li>
-                                <li><a href="contact.html">{{messageCom && messageCom.navContact}}</a>
-                                </li>
-
-
-                            </ul>
-                        </div>
-                    </div>
-                    <div id="langListId" class="lang__list">
-                        <div @click="changeLang('tk')" class="item" :class="['tk'==lang ? 'active': '']">Tk</div>
-                        <div @click="changeLang('ru')" class="item" :class="['ru'==lang ? 'active': '']">Ru</div>
-                        <div @click="changeLang('en')" class="item" :class="['en'==lang ? 'active': '']">en</div>
-                    </div>
-
+                <!-- Main Menu -->
+                <nav class="main-menu navbar-expand-md navbar-light">
+                  <div
+                    class="collapse navbar-collapse show clearfix"
+                    id="navbarSupportedContent"
+                  >
+                    <ul v-if="showNavbar" class="navigation">
+                      <li>
+                        <a href="index.html"
+                          >{{computedNavList && computedNavList.home}}</a
+                        >
+                      </li>
+                      <li>
+                        <a href="about.html"
+                          >{{computedNavList && computedNavList.about}}</a
+                        >
+                      </li>
+                      <li>
+                        <a href="rooms.html"
+                          >{{computedNavList && computedNavList.room}}</a
+                        >
+                      </li>
+                      <li>
+                        <a href="gallery.html"
+                          >{{computedNavList && computedNavList.gallery}}</a
+                        >
+                      </li>
+                      <li>
+                        <a href="contact.html"
+                          >{{messageCom && messageCom.navContact}}</a
+                        >
+                      </li>
+                    </ul>
+                  </div>
                 </nav>
-            </div><!-- End Mobile Menu -->
-
-            <div class="nav-overlay">
-                <div class="cursor"></div>
-                <div class="cursor-follower"></div>
-            </div>
-        </header>
-        <!-- End Main Header -->
-
-        <!-- Hidden Sidebar -->
-        <section class="hidden-sidebar close-sidebar">
-            <div class="wrapper-box">
-                <div class="content-wrapper">
-                    <div class="hidden-sidebar-close"><span class="flaticon-remove"></span></div>
-                    <div class="about-widget widget">
-                        <div class="logo"><img :src="computedGeneralInfo && computedGeneralInfo.logoWhite " alt="">
-                        </div>
-                        <div class="text">{{ messageCom && messageCom.hidden.tit}}</div>
-                    </div>
-                    <div class="instagram-widget widget">
-                        <!-- <h4>Instagram Feeds</h4> -->
-                        <div class="inner-box">
-                            <div class="wrapper-box">
-                                <div v-for="(gal, i) in computedInstaGalleries" :key="'gal'+i" class="image">
-                                    <img :src="gal" alt="">
-                                    <div class="overlay-link"><a :href="gal" class="lightbox-image"
-                                            data-fancybox="gallery"><span class="fa fa-plus"></span></a></div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="widget contact-widget">
-                        <h4>{{messageCom && messageCom.hidden.touch}}</h4>
-                        <div class="text">{{messageCom && messageCom.hidden.welcome}}</div>
-                        <ul>
-                            <li>
-                                <i class="fal fa-phone"></i>
-                                <a href="#">
-                                    {{ computedGeneralInfo && computedGeneralInfo.phone[0]}}
-
-                                </a>
-                            </li>
-                            <li>
-                                <i class="fal fa-envelope"></i>
-                                <a href="#">
-                                    {{ computedGeneralInfo && computedGeneralInfo.email[0] }}
-                                </a>
-                            </li>
-                            <li>
-                                <i class="fal fa-map-marker-alt"></i>
-                                {{ computedGeneralInfo && computedGeneralInfo.address }}
-                            </li>
-                        </ul>
-                    </div>
+              </div>
+              <div class="right-column">
+                <div class="menu-bar sidemenu-nav-toggler">
+                  <img src="assets/images/icons/icon-bar3.png" alt="" />
                 </div>
+              </div>
             </div>
-        </section>
+          </div>
+        </div>
+        <!--End Header Upper-->
 
-
-        <!-- Page Title -->
-        <section class="page-title" style="background-image: url(assets/images/header-contact.jpg);">
+        <!-- Sticky Header  -->
+        <div class="sticky-header">
+          <div class="header-upper">
             <div class="auto-container">
-                <div class="content-box">
-                    <div class="content-wrapper">
-                        <div class="title">
-                            <h1>{{messageCom && messageCom.contact.name}}</h1>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+              <div class="inner-container">
+                <!--Nav Box-->
+                <div class="nav-outer">
+                  <!--Mobile Navigation Toggler-->
+                  <div class="mobile-nav-toggler" @click="toogleMobileNav()">
+                    <img src="assets/images/icons/icon-bar.png" alt="" />
+                  </div>
 
-        <!-- section fifty six -->
-        <section class="section-fifty-six">
-            <div class="auto-container">
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="block-fifty-six">
-                            <div class="icon"><i class="flaticon-open"></i></div>
-                            <div class="icon-border"></div>
-                            <h3>{{messageCom && messageCom.contact.email}}</h3>
-                            <div class="text" v-if="computedGeneralInfo">
-                                <span v-for="(email,i) in computedGeneralInfo.email">
-                                    {{email}} <br>
-                                </span>
-                            </div>
-                        </div>
+                  <!-- Main Menu -->
+                  <nav class="main-menu navbar-expand-md navbar-light">
+                    <div
+                      class="collapse navbar-collapse show clearfix"
+                      id="NavbarSuportedContent"
+                    >
+                      <ul v-if="showNavbar" class="navigation">
+                        <li>
+                          <a href="index.html"
+                            >{{computedNavList && computedNavList.home}}</a
+                          >
+                        </li>
+                        <li>
+                          <a href="about.html"
+                            >{{computedNavList && computedNavList.about}}</a
+                          >
+                        </li>
+                        <li>
+                          <a href="rooms.html"
+                            >{{computedNavList && computedNavList.room}}</a
+                          >
+                        </li>
+                        <li>
+                          <a href="gallery.html"
+                            >{{computedNavList && computedNavList.gallery}}</a
+                          >
+                        </li>
+                        <li>
+                          <a href="contact.html"
+                            >{{messageCom && messageCom.navContact}}</a
+                          >
+                        </li>
+                      </ul>
                     </div>
-                    <div class="col-lg-4">
-                        <div class="block-fifty-six">
-                            <div class="icon"><i class="flaticon-call-2"></i></div>
-                            <div class="icon-border"></div>
-                            <h3>{{messageCom && messageCom.contact.phone}}</h3>
-                            <div class="text" v-if="computedGeneralInfo">
-                                <span v-for="(email,i) in computedGeneralInfo.email">
-                                    {{email}} <br>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="block-fifty-six">
-                            <div class="icon"><i class="flaticon-location-2"></i></div>
-                            <div class="icon-border"></div>
-                            <h3>{{messageCom && messageCom.contact.office}}</h3>
-                            <div class="text">
-                                {{computedGeneralInfo && computedGeneralInfo.address}}
-                            </div>
-                        </div>
-                    </div>
+                  </nav>
                 </div>
+                <div class="right-column">
+                  <div class="menu-bar sidemenu-nav-toggler">
+                    <img src="assets/images/icons/icon-bar3.png" alt="" />
+                  </div>
+                </div>
+              </div>
             </div>
-        </section>
+          </div>
+        </div>
+        <!-- End Sticky Menu -->
 
-        <section class="map-section">
-            <div class="contact-map">
-                <!-- <iframe
+        <!-- Mobile Menu  -->
+        <div id="mobileMenuId" class="mobile-menu">
+          <div class="menu-backdrop"></div>
+          <div ref="closeBtn" class="close-btn">
+            <i class="icon far fa-times"></i>
+          </div>
+
+          <nav class="menu-box">
+            <div class="nav-logo">
+              <a href="index.html"
+                ><img
+                  :src="computedGeneralInfo && computedGeneralInfo.logoWhite "
+                  alt=""
+                  title=""
+              /></a>
+            </div>
+            <div class="menu-outer">
+              <div
+                class="collapse navbar-collapse show clearfix"
+                id="NavbarSuportedContent"
+              >
+                <ul v-if="showNavbar" class="navigation">
+                  <li>
+                    <a href="index.html"
+                      >{{computedNavList && computedNavList.home}}</a
+                    >
+                  </li>
+                  <li>
+                    <a href="about.html"
+                      >{{computedNavList && computedNavList.about}}</a
+                    >
+                  </li>
+                  <li>
+                    <a href="rooms.html"
+                      >{{computedNavList && computedNavList.room}}</a
+                    >
+                  </li>
+                  <li>
+                    <a href="gallery.html"
+                      >{{computedNavList && computedNavList.gallery}}</a
+                    >
+                  </li>
+                  <li>
+                    <a href="contact.html"
+                      >{{messageCom && messageCom.navContact}}</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div id="langListId" class="lang__list">
+              <div
+                @click="changeLang('tk')"
+                class="item"
+                :class="['tk'==lang ? 'active': '']"
+              >
+                Tk
+              </div>
+              <div
+                @click="changeLang('ru')"
+                class="item"
+                :class="['ru'==lang ? 'active': '']"
+              >
+                Ru
+              </div>
+              <div
+                @click="changeLang('en')"
+                class="item"
+                :class="['en'==lang ? 'active': '']"
+              >
+                en
+              </div>
+            </div>
+          </nav>
+        </div>
+        <!-- End Mobile Menu -->
+
+        <div class="nav-overlay">
+          <div class="cursor"></div>
+          <div class="cursor-follower"></div>
+        </div>
+      </header>
+      <!-- End Main Header -->
+
+      <!-- Hidden Sidebar -->
+      <section class="hidden-sidebar close-sidebar">
+        <div class="wrapper-box">
+          <div class="content-wrapper">
+            <div class="hidden-sidebar-close">
+              <span class="flaticon-remove"></span>
+            </div>
+            <div class="about-widget widget">
+              <div class="logo">
+                <img
+                  :src="computedGeneralInfo && computedGeneralInfo.logoWhite "
+                  alt=""
+                />
+              </div>
+              <div class="text">{{ messageCom && messageCom.hidden.tit}}</div>
+            </div>
+            <div class="instagram-widget widget">
+              <!-- <h4>Instagram Feeds</h4> -->
+              <div class="inner-box">
+                <div class="wrapper-box">
+                  <div
+                    v-for="(gal, i) in computedInstaGalleries"
+                    :key="'gal'+i"
+                    class="image"
+                  >
+                    <img :src="gal" alt="" />
+                    <div class="overlay-link">
+                      <a
+                        :href="gal"
+                        class="lightbox-image"
+                        data-fancybox="gallery"
+                        ><span class="fa fa-plus"></span
+                      ></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="widget contact-widget">
+              <h4>{{messageCom && messageCom.hidden.touch}}</h4>
+              <div class="text">
+                {{messageCom && messageCom.hidden.welcome}}
+              </div>
+              <ul>
+                <li>
+                  <i class="fal fa-phone"></i>
+                  <a href="#">
+                    {{ computedGeneralInfo && computedGeneralInfo.phone[0]}}
+                  </a>
+                </li>
+                <li>
+                  <i class="fal fa-envelope"></i>
+                  <a href="#">
+                    {{ computedGeneralInfo && computedGeneralInfo.email[0] }}
+                  </a>
+                </li>
+                <li>
+                  <i class="fal fa-map-marker-alt"></i>
+                  {{ computedGeneralInfo && computedGeneralInfo.address }}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Page Title -->
+      <section
+        class="page-title"
+        style="background-image: url(assets/images/header-contact.jpg)"
+      >
+        <div class="auto-container">
+          <div class="content-box">
+            <div class="content-wrapper">
+              <div class="title">
+                <h1>{{messageCom && messageCom.contact.name}}</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- section fifty six -->
+      <section class="section-fifty-six">
+        <div class="auto-container">
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="block-fifty-six">
+                <div class="icon"><i class="flaticon-open"></i></div>
+                <div class="icon-border"></div>
+                <h3>{{messageCom && messageCom.contact.email}}</h3>
+                <div class="text" v-if="computedGeneralInfo">
+                  <span v-for="(email,i) in computedGeneralInfo.email">
+                    {{email}} <br />
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="block-fifty-six">
+                <div class="icon"><i class="flaticon-call-2"></i></div>
+                <div class="icon-border"></div>
+                <h3>{{messageCom && messageCom.contact.phone}}</h3>
+                <div class="text" v-if="computedGeneralInfo">
+                  <span v-for="(email,i) in computedGeneralInfo.email">
+                    {{email}} <br />
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="block-fifty-six">
+                <div class="icon"><i class="flaticon-location-2"></i></div>
+                <div class="icon-border"></div>
+                <h3>{{messageCom && messageCom.contact.office}}</h3>
+                <div class="text">
+                  {{computedGeneralInfo && computedGeneralInfo.address}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="map-section">
+        <div class="contact-map">
+          <!-- <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d787.1251454142886!2d58.372138861419536!3d37.89536062639845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f6ffd7fce0e0049%3A0x2f5c389e27643b5d!2sI%C5%9F%20merkezi!5e0!3m2!1sen!2sru!4v1692939659017!5m2!1sen!2sru"
                     width="100%" height="800" frameborder="0" style="border:0; width: 100%" allowfullscreen=""
                     aria-hidden="false" tabindex="0"></iframe> -->
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12588.178127365363!2d58.3867406!3d37.9293901!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f6ffd0b660a7c81%3A0x286485d794579399!2sDivan%20Hotel!5e0!3m2!1sen!2sru!4v1693031764790!5m2!1sen!2sru"
-                    width="100%" height="800" frameborder="0" style="border:0; width: 100%" allowfullscreen=""
-                    aria-hidden="false" tabindex="0"></iframe>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12588.178127365363!2d58.3867406!3d37.9293901!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f6ffd0b660a7c81%3A0x286485d794579399!2sDivan%20Hotel!5e0!3m2!1sen!2sru!4v1693031764790!5m2!1sen!2sru"
+            width="100%"
+            height="800"
+            frameborder="0"
+            style="border: 0; width: 100%"
+            allowfullscreen=""
+            aria-hidden="false"
+            tabindex="0"
+          ></iframe>
+        </div>
+      </section>
+
+      <section class="contact-section">
+        <div class="auto-container">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="image">
+                <img src="assets/images/contact-picture.jpg" alt="" />
+              </div>
             </div>
-        </section>
-
-        <section class="contact-section">
-            <div class="auto-container">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="image"><img src="assets/images/contact-picture.jpg" alt=""></div>
-                    </div>
-                    <div class="col-sm-12 col-lg-6">
-
-                        <div class="contact-block">
-                            <div class="sub-title">{{messageCom && messageCom.contact.touch}}</div>
-                            <h2 class="sec-title mb-30">{{messageCom && messageCom.contact.appoint}}</h2>
-                            <div class="text" v-html="messageCom && messageCom.contact.tit"></div>
-
-                            <div class="contact-form style-two">
-                                <form id="contact-form">
-                                    <div class="row">
-                                        <div class="form-group  col-md-6">
-                                            <input type="text" ref="fullname" class="form-control"
-                                                :placeholder="messageCom && messageCom.contact.fullName" required>
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <input type="email" ref="email" class="form-control"
-                                                :placeholder="messageCom && messageCom.contact.email" required>
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <input type="text" ref="guests" class="form-control"
-                                                :placeholder="messageCom && messageCom.contact.guests" required>
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <input type="date" ref="date" class="form-control" name="form_subject"
-                                                value="" :placeholder="messageCom && messageCom.contact.date" required>
-                                        </div>
-                                        <div class="form-group col-md-12">
-                                            <textarea name="form_message" ref="message" class="form-control"
-                                                :placeholder="messageCom && messageCom.contact.message"></textarea>
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <button style="width: 182px;" class="theme-btn btn-style-one" type="button"
-                                                @click="sendEmail()">
-                                                <span ref="btnText">
-                                                    {{messageCom && messageCom.contact.make }}
-                                                </span>
-                                                <div style="display: none;" ref="btnLoading" class="spinner-border"
-                                                    role="status">
-                                                    <span class="sr-only">Loading...</span>
-                                                </div>
-                                            </button>
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <span class="custom__message error" ref="requiredTag">{{messageCom &&
-                                                messageCom.required}}</span>
-                                            <span class="custom__message error" ref="errorTag">{{messageCom &&
-                                                messageCom.error}}</span>
-                                            <span class="custom__message success" ref="successTag">{{messageCom &&
-                                                messageCom.success}}</span>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-
-                        </div>
-                    </div>
+            <div class="col-sm-12 col-lg-6">
+              <div class="contact-block">
+                <div class="sub-title">
+                  {{messageCom && messageCom.contact.touch}}
                 </div>
-            </div>
-        </section>
+                <h2 class="sec-title mb-30">
+                  {{messageCom && messageCom.contact.appoint}}
+                </h2>
+                <div
+                  class="text"
+                  v-html="messageCom && messageCom.contact.tit"
+                ></div>
 
-        <footer class="main-footer">
-            <div class="auto-container">
-                <div class="widget-wrapper">
+                <div class="contact-form style-two">
+                  <form id="contact-form">
                     <div class="row">
-                        <div class="col-lg-3 col-md-6">
-                            <div class="footer-logo"><img :src="computedGeneralInfo && computedGeneralInfo.logo" alt="">
-                            </div>
-                        </div>
-                        <div class="column col-lg-3 col-md-6">
-                            <div class="widget links-widget">
-                                <h4>{{messageCom && messageCom.pages}}</h4>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <ul>
-                                            <li>
-                                                <a href="index.html">
-                                                    {{ computedNavList && computedNavList.home }}
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="rooms.html">
-                                                    {{ computedNavList && computedNavList.room }}
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="gallery.html">
-                                                    {{ computedNavList && computedNavList.gallery }}
-                                                </a>
-                                            </li>
-
-                                        </ul>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <ul>
-
-                                            <li><a href="about.html">{{computedNavList && computedNavList.about }}</a>
-                                            </li>
-                                            <li><a href="contact.html">{{messageCom && messageCom.navContact}}</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6">
-                            <div class="widget text-widget">
-                                <h4>{{messageCom && messageCom.footer.award}}</h4>
-                                <div class="text" v-html="messageCom && messageCom.footer.awardTitle"></div>
-
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6">
-                            <div class="widget contact-widget">
-                                <h4>{{messageCom && messageCom.footer.touch}}</h4>
-                                <div class="text" v-html="messageCom && messageCom.footer.welcomee"></div>
-                                <ul>
-                                    <li><i class="fal fa-phone"></i><a href="#">{{computedGeneralInfo &&
-                                            computedGeneralInfo.phone[0]}}</a></li>
-                                    <li><i class="fal fa-envelope"></i><a
-                                            href="mailto:info@webmail.com">{{computedGeneralInfo &&
-                                            computedGeneralInfo.email[0]}}</a></li>
-                                    <li><i class="fal fa-map-marker-alt"></i> {{computedGeneralInfo &&
-                                        computedGeneralInfo.address }} </li>
-                                </ul>
-                            </div>
-                        </div>
+                      <div class="form-group col-md-6">
+                        <input
+                          type="text"
+                          ref="fullname"
+                          class="form-control"
+                          :placeholder="messageCom && messageCom.contact.fullName"
+                          required
+                        />
+                      </div>
+                      <div class="form-group col-md-6">
+                        <input
+                          type="email"
+                          ref="email"
+                          class="form-control"
+                          :placeholder="messageCom && messageCom.contact.email"
+                          required
+                        />
+                      </div>
+                      <div class="form-group col-md-6">
+                        <input
+                          type="text"
+                          ref="guests"
+                          class="form-control"
+                          :placeholder="messageCom && messageCom.contact.guests"
+                          required
+                        />
+                      </div>
+                      <div class="form-group col-md-6">
+                        <input
+                          type="date"
+                          ref="date"
+                          class="form-control"
+                          name="form_subject"
+                          value=""
+                          :placeholder="messageCom && messageCom.contact.date"
+                          required
+                        />
+                      </div>
+                      <div class="form-group col-md-12">
+                        <textarea
+                          name="form_message"
+                          ref="message"
+                          class="form-control"
+                          :placeholder="messageCom && messageCom.contact.message"
+                        ></textarea>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <button
+                          style="width: 182px"
+                          class="theme-btn btn-style-one"
+                          type="button"
+                          @click="sendEmail()"
+                        >
+                          <span ref="btnText">
+                            {{messageCom && messageCom.contact.make }}
+                          </span>
+                          <div
+                            style="display: none"
+                            ref="btnLoading"
+                            class="spinner-border"
+                            role="status"
+                          >
+                            <span class="sr-only">Loading...</span>
+                          </div>
+                        </button>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <span class="custom__message error" ref="requiredTag"
+                          >{{messageCom && messageCom.required}}</span
+                        >
+                        <span class="custom__message error" ref="errorTag"
+                          >{{messageCom && messageCom.error}}</span
+                        >
+                        <span class="custom__message success" ref="successTag"
+                          >{{messageCom && messageCom.success}}</span
+                        >
+                      </div>
                     </div>
+                  </form>
                 </div>
+              </div>
             </div>
+          </div>
+        </div>
+      </section>
 
-            <!-- Footer Bottom -->
-            <div class="footer-bottom">
-                <div class="auto-container">
-                    <div class="wrapper-box">
-                        <div class="copyright">
-                            <div class="text">{{messageCom && messageCom.footer.copy}}</div>
-                        </div>
+      <footer class="main-footer">
+        <div class="auto-container">
+          <div class="widget-wrapper">
+            <div class="row">
+              <div class="col-lg-3 col-md-6">
+                <div class="footer-logo">
+                  <img
+                    :src="computedGeneralInfo && computedGeneralInfo.logo"
+                    alt=""
+                  />
+                </div>
+              </div>
+              <div class="column col-lg-3 col-md-6">
+                <div class="widget links-widget">
+                  <h4>{{messageCom && messageCom.pages}}</h4>
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <ul>
+                        <li>
+                          <a href="index.html">
+                            {{ computedNavList && computedNavList.home }}
+                          </a>
+                        </li>
+                        <li>
+                          <a href="rooms.html">
+                            {{ computedNavList && computedNavList.room }}
+                          </a>
+                        </li>
+                        <li>
+                          <a href="gallery.html">
+                            {{ computedNavList && computedNavList.gallery }}
+                          </a>
+                        </li>
+                      </ul>
                     </div>
+                    <div class="col-sm-6">
+                      <ul>
+                        <li>
+                          <a href="about.html"
+                            >{{computedNavList && computedNavList.about }}</a
+                          >
+                        </li>
+                        <li>
+                          <a href="contact.html"
+                            >{{messageCom && messageCom.navContact}}</a
+                          >
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
+              </div>
+              <div class="col-lg-3 col-md-6">
+                <div class="widget text-widget">
+                  <h4>{{messageCom && messageCom.footer.award}}</h4>
+                  <div
+                    class="text"
+                    v-html="messageCom && messageCom.footer.awardTitle"
+                  ></div>
+                </div>
+              </div>
+              <div class="col-lg-3 col-md-6">
+                <div class="widget contact-widget">
+                  <h4>{{messageCom && messageCom.footer.touch}}</h4>
+                  <div
+                    class="text"
+                    v-html="messageCom && messageCom.footer.welcomee"
+                  ></div>
+                  <ul>
+                    <li>
+                      <i class="fal fa-phone"></i
+                      ><a href="#"
+                        >{{computedGeneralInfo &&
+                        computedGeneralInfo.phone[0]}}</a
+                      >
+                    </li>
+                    <li>
+                      <i class="fal fa-envelope"></i
+                      ><a href="mailto:info@webmail.com"
+                        >{{computedGeneralInfo &&
+                        computedGeneralInfo.email[0]}}</a
+                      >
+                    </li>
+                    <li>
+                      <i class="fal fa-map-marker-alt"></i>
+                      {{computedGeneralInfo && computedGeneralInfo.address }}
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
-        </footer>
+          </div>
+        </div>
 
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+          <div class="auto-container">
+            <div class="wrapper-box">
+              <div class="copyright">
+                <div class="text">{{messageCom && messageCom.footer.copy}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
 
-    <div class="scroll-to-top scroll-to-target" data-target="html"><span class="fas fa-arrow-up"></span></div>
+    <div class="scroll-to-top scroll-to-target" data-target="html">
+      <span class="fas fa-arrow-up"></span>
+    </div>
     <script src="./assets/js/index.js"></script>
     <script src="assets/js/jquery.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
@@ -511,8 +700,5 @@
     <script src="assets/js/jquery-ui-1.9.2.custom.min.js"></script>
 
     <script src="assets/js/active.js"></script>
-
-
-</body>
-
+  </body>
 </html>
