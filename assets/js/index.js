@@ -14,6 +14,7 @@ function CSRFGet() {
       .then((response) => response.json())
       .then((responseData) => {
         console.log(responseData);
+        localStorage.getItem("test", JSON.stringify(responseData));
         sessionStorage.setItem("csrf", responseData.token);
       })
       .catch((error) => {
