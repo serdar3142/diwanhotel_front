@@ -1,4 +1,4 @@
-const api = "http://192.168.1.146:5055"
+const api = "http://216.250.11.75:5055"
 //const api = "http://diwan-api.pikir.biz"
 let mainLang = localStorage.getItem("lang") ?? "ru"
 function changeLang(value) {
@@ -192,13 +192,14 @@ const app = Vue.createApp({
 
             localStorage.setItem("lang", value)
             this.lang = value
-            if (this.$refs.dropdownRef) {
-                this.$refs.dropdownRef.checked = false
-            }
-            const body = document.getElementsByTagName("body")[0]
-            if (body.classList.contains("mobile-menu-visible")) {
-                this.$refs.closeBtn.click()
-            }
+            window.location.reload()
+            // if (this.$refs.dropdownRef) {
+            //     this.$refs.dropdownRef.checked = false
+            // }
+            // const body = document.getElementsByTagName("body")[0]
+            // if (body.classList.contains("mobile-menu-visible")) {
+            //     this.$refs.closeBtn.click()
+            // }
 
         },
         sendEmail() {

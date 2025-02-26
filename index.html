@@ -25,8 +25,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <script src="./assets/js/axios.min.js"></script>
-    <script src="./assets/js/vue.global.js"></script>
-    <script src="./assets/js/vue.global.prod.js"></script>
+    <script src="./assets/js/vue.global.min.js"></script>
+    <script src="./assets/js/vue.global.prod.min.js"></script>
     <script src="./assets/js/messages.js"></script>
 </head>
 
@@ -132,8 +132,6 @@
                                         </li>
                                         <li><a href="contact.html">{{messageCom && messageCom.navContact}}</a>
                                         </li>
-
-
                                     </ul>
                                 </div>
                             </nav>
@@ -286,31 +284,14 @@
             </div>
         </section>
 
-        <!--Search Popup-->
-        <div id="search-popup" class="search-popup">
-            <div class="close-search theme-btn"><i class="far fa-times"></i></div>
-            <div class="popup-inner">
-                <div class="overlay-layer"></div>
-                <div class="search-form">
-                    <form method="post" action="index.html">
-                        <div class="form-group">
-                            <fieldset>
-                                <input type="search" class="form-control" name="search-input" value=""
-                                    placeholder="Type & Enter" required>
-                            </fieldset>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+
 
         <!-- Bnner Section -->
         <section class="banner-section">
             <div class="shape"><img src="assets/images/shape/shape-3.png" alt=""></div>
             <div class="big-title">{{messageCom && messageCom.slider.book}}</div>
-            <div class="swiper-container banner-slider">
+            <div v-if="computedSliders.length" class="swiper-container banner-slider">
                 <div class="swiper-wrapper">
-                    <!-- Slide Item -->
                     <div class="swiper-slide" v-for="(slid, i) in computedSliders" :key="'slid'+i">
                         <div class="content-outer">
                             <div class="content-box">
@@ -375,14 +356,14 @@
                 <div class="image"><img src="assets/images/resource/image-13.png" alt=""></div>
                 <h2 class="sec-title">{{messageCom && messageCom.features}}</h2>
                 <div class="row">
-                    <div class="col-lg-4 col-md-6">
+                    <div class="col-lg-3 col-md-6">
                         <div class="block-fourteen">
                             <div class="icon"><i class="flaticon-wifi-signal"></i></div>
                             <h3 v-html="messageCom && messageCom.services.wifi"></h3>
                             <div class="icon-border"></div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6">
+                    <div class="col-lg-3 col-md-6">
                         <div class="block-fourteen">
                             <div class="icon">
                                 <img style="width: 50px; height: 50px;" src="assets/images/tv.svg" alt="">
@@ -391,14 +372,14 @@
                             <div class="icon-border"></div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6">
+                    <div class="col-lg-3 col-md-6">
                         <div class="block-fourteen">
                             <div class="icon"><i class="flaticon-croissant"></i></i></div>
                             <h3 v-html="messageCom && messageCom.services.spa"></h3>
                             <div class="icon-border"></div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6">
+                    <div class="col-lg-3 col-md-6">
                         <div class="block-fourteen">
 
                             <div class="icon">
@@ -408,21 +389,21 @@
                             <div class="icon-border"></div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6">
+                    <div class="col-lg-3 col-md-6">
                         <div class="block-fourteen">
                             <div class="icon"><i class="flaticon-massage"></i></div>
                             <h3 v-html="messageCom && messageCom.services.drink"></h3>
                             <div class="icon-border"></div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6">
+                    <div class="col-lg-3 col-md-6">
                         <div class="block-fourteen">
                             <div class="icon"><i class="flaticon-weights"></i></div>
                             <h3 v-html="messageCom && messageCom.services.restaurant"></h3>
                             <div class="icon-border"></div>
                         </div>
                     </div>
-                    <!-- <div class="col-lg-3 col-md-6">
+                    <div class="col-lg-3 col-md-6">
                         <div class="block-fourteen">
                             <div class="icon"><i class="flaticon-conference-1"></i></div>
                             <h3 v-html="messageCom && messageCom.services.room"></h3>
@@ -437,7 +418,7 @@
                             <h3 v-html="messageCom && messageCom.services.transport"></h3>
                             <div class="icon-border"></div>
                         </div>
-                    </div> -->
+                    </div>
                 </div>
             </div>
         </section>
@@ -589,15 +570,11 @@
     <script src="assets/js/jquery.fancybox.js"></script>
     <script src="assets/js/isotope.js"></script>
     <script src="assets/js/owl.js"></script>
-    <script src="assets/js/appear.js"></script>
-    <script src="assets/js/wow.js"></script>
-    <script src="assets/js/scrollbar.js"></script>
+
     <script src="assets/js/TweenMax.min.js"></script>
     <script src="assets/js/swiper.min.js"></script>
-    <script src="assets/js/jquery.ajaxchimp.min.js"></script>
-    <script src="assets/js/parallax-scroll.js"></script>
+
     <script src="assets/js/jquery-ui-1.9.2.custom.min.js"></script>
-    <script src="assets/js/jquery.nice-select.min.js"></script>
 
     <script src="assets/js/active.js"></script>
 

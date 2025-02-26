@@ -6,9 +6,9 @@
 	"use strict";
 	$(window).ready(function () {
 
-		$(".datepicker").datepicker();
+		// $(".datepicker").datepicker();
 
-		$('select').niceSelect();
+		// $('select').niceSelect();
 
 		function dynamicCurrentMenuClass(selector) {
 			let FileName = window.location.href.split('/').reverse()[0];
@@ -181,65 +181,65 @@
 		}
 
 		//Sidemenu Nav Hide Show
-		if ($('.side-menu').length) {
+		// if ($('.side-menu').length) {
 
-			$(".side-menu .menu-box").niceScroll({
-				cursorborder: "none",
-				cursorborderradius: "0px",
-				touchbehavior: true,
-				bouncescroll: false,
-				scrollspeed: 120,
-				mousescrollstep: 90,
-				horizrailenabled: true,
-				preservenativescrolling: true,
-				cursordragontouch: true
-			});
+		// 	$(".side-menu .menu-box").niceScroll({
+		// 		cursorborder: "none",
+		// 		cursorborderradius: "0px",
+		// 		touchbehavior: true,
+		// 		bouncescroll: false,
+		// 		scrollspeed: 120,
+		// 		mousescrollstep: 90,
+		// 		horizrailenabled: true,
+		// 		preservenativescrolling: true,
+		// 		cursordragontouch: true
+		// 	});
 
-			//Dropdown Button
-			$('.side-menu li.dropdown .dropdown-btn').on('click', function () {
-				$(this).toggleClass('open');
-				$(this).prev('ul').slideToggle(500);
-			});
+		// 	//Dropdown Button
+		// 	$('.side-menu li.dropdown .dropdown-btn').on('click', function () {
+		// 		$(this).toggleClass('open');
+		// 		$(this).prev('ul').slideToggle(500);
+		// 	});
 
-			$('body').addClass('side-menu-visible');
-			//Menu Toggle Btn
-			$('.side-nav-toggler').on('click', function () {
-				$('body').addClass('side-menu-visible');
-			});
+		// 	$('body').addClass('side-menu-visible');
+		// 	//Menu Toggle Btn
+		// 	$('.side-nav-toggler').on('click', function () {
+		// 		$('body').addClass('side-menu-visible');
+		// 	});
 
-			//Menu Toggle Btn
-			$('.side-menu .side-menu-resize').on('click', function () {
-				$('body').toggleClass('side-menu-visible');
-			});
+		// 	//Menu Toggle Btn
+		// 	$('.side-menu .side-menu-resize').on('click', function () {
+		// 		$('body').toggleClass('side-menu-visible');
+		// 	});
 
-			//Menu Toggle Btn
-			$('.main-header .mobile-nav-toggler-two').on('click', function () {
-				$('body').addClass('side-menu-visible-s2');
-			});
+		// 	//Menu Toggle Btn
+		// 	$('.main-header .mobile-nav-toggler-two').on('click', function () {
+		// 		$('body').addClass('side-menu-visible-s2');
+		// 	});
 
-			//Menu Overlay
-			$('.main-header .side-menu-overlay').on('click', function () {
-				$('body').removeClass('side-menu-visible-s2');
-			});
-		}
+		// 	//Menu Overlay
+		// 	$('.main-header .side-menu-overlay').on('click', function () {
+		// 		$('body').removeClass('side-menu-visible-s2');
+		// 	});
+		// }
 
 		//Search Popup
-		if ($('#search-popup').length) {
+		// if ($('#search-popup').length) {
 
-			//Show Popup
-			$('.search-toggler').on('click', function () {
-				$('#search-popup').addClass('popup-visible');
-			});
-			$(document).keydown(function (e) {
-				if (e.keyCode === 27) {
-					$('#search-popup').removeClass('popup-visible');
-				}
-			});
-			//Hide Popup
-			$('.close-search,.search-popup .overlay-layer').on('click', function () {
-				$('#search-popup').removeClass('popup-visible');
-			});
-		}
+		// 	//Show Popup
+		// 	$('.search-toggler').on('click', function () {
+		// 		$('#search-popup').addClass('popup-visible');
+		// 	});
+		// 	$(document).keydown(function (e) {
+		// 		if (e.keyCode === 27) {
+		// 			$('#search-popup').removeClass('popup-visible');
+		// 		}
+		// 	});
+		// 	//Hide Popup
+		// 	$('.close-search,.search-popup .overlay-layer').on('click', function () {
+		// 		$('#search-popup').removeClass('popup-visible');
+		// 	});
+		// }
 
 		function bannerSlider() {
 			if ($(".banner-slider").length > 0) {
@@ -272,10 +272,8 @@
 			}
 		}
 
-		/////////////////////////////
-		//Universal Code for All Owl Carousel Sliders
-		/////////////////////////////
 		setTimeout(() => {
+
 
 			if ($('.theme_carousel').length) {
 				$(".theme_carousel").each(function (index) {
@@ -285,76 +283,76 @@
 					$(this).owlCarousel($owlAttr);
 				});
 			}
-		}, 2000);
+		}, 3000);
 
 		// Donation Progress Bar
-		if ($('.count-bar').length) {
-			$('.count-bar').appear(function () {
-				var el = $(this);
-				var percent = el.data('percent');
-				$(el).css('width', percent).addClass('counted');
-			}, { accY: -50 });
+		// if ($('.count-bar').length) {
+		// 	$('.count-bar').appear(function () {
+		// 		var el = $(this);
+		// 		var percent = el.data('percent');
+		// 		$(el).css('width', percent).addClass('counted');
+		// 	}, { accY: -50 });
 
-		}
+		// }
 
 		//Jquery Spinner / Quantity Spinner
-		if ($('.quantity-spinner').length) {
-			$("input.quantity-spinner").TouchSpin({
-				verticalbuttons: true
-			});
-		}
+		// if ($('.quantity-spinner').length) {
+		// 	$("input.quantity-spinner").TouchSpin({
+		// 		verticalbuttons: true
+		// 	});
+		// }
 
 		//Fact Counter + Text Count
-		if ($('.count-box').length) {
-			$('.count-box').appear(function () {
+		// if ($('.count-box').length) {
+		// 	$('.count-box').appear(function () {
 
-				var $t = $(this),
-					n = $t.find(".count-text").attr("data-stop"),
-					r = parseInt($t.find(".count-text").attr("data-speed"), 10);
+		// 		var $t = $(this),
+		// 			n = $t.find(".count-text").attr("data-stop"),
+		// 			r = parseInt($t.find(".count-text").attr("data-speed"), 10);
 
-				if (!$t.hasClass("counted")) {
-					$t.addClass("counted");
-					$({
-						countNum: $t.find(".count-text").text()
-					}).animate({
-						countNum: n
-					}, {
-						duration: r,
-						easing: "linear",
-						step: function () {
-							$t.find(".count-text").text(Math.floor(this.countNum));
-						},
-						complete: function () {
-							$t.find(".count-text").text(this.countNum);
-						}
-					});
-				}
+		// 		if (!$t.hasClass("counted")) {
+		// 			$t.addClass("counted");
+		// 			$({
+		// 				countNum: $t.find(".count-text").text()
+		// 			}).animate({
+		// 				countNum: n
+		// 			}, {
+		// 				duration: r,
+		// 				easing: "linear",
+		// 				step: function () {
+		// 					$t.find(".count-text").text(Math.floor(this.countNum));
+		// 				},
+		// 				complete: function () {
+		// 					$t.find(".count-text").text(this.countNum);
+		// 				}
+		// 			});
+		// 		}
 
-			}, { accY: 0 });
-		}
+		// 	}, { accY: 0 });
+		// }
 
 		//Accordion Box
-		if ($('.accordion-box').length) {
-			$(".accordion-box").on('click', '.acc-btn', function () {
+		// if ($('.accordion-box').length) {
+		// 	$(".accordion-box").on('click', '.acc-btn', function () {
 
-				var outerBox = $(this).parents('.accordion-box');
-				var target = $(this).parents('.accordion');
+		// 		var outerBox = $(this).parents('.accordion-box');
+		// 		var target = $(this).parents('.accordion');
 
-				if ($(this).hasClass('active') !== true) {
-					$(outerBox).find('.accordion .acc-btn').removeClass('active');
-				}
+		// 		if ($(this).hasClass('active') !== true) {
+		// 			$(outerBox).find('.accordion .acc-btn').removeClass('active');
+		// 		}
 
-				if ($(this).next('.acc-content').is(':visible')) {
-					return false;
-				} else {
-					$(this).addClass('active');
-					$(outerBox).children('.accordion').removeClass('active-block');
-					$(outerBox).find('.accordion').children('.acc-content').slideUp(300);
-					target.addClass('active-block');
-					$(this).next('.acc-content').slideDown(300);
-				}
-			});
-		}
+		// 		if ($(this).next('.acc-content').is(':visible')) {
+		// 			return false;
+		// 		} else {
+		// 			$(this).addClass('active');
+		// 			$(outerBox).children('.accordion').removeClass('active-block');
+		// 			$(outerBox).find('.accordion').children('.acc-content').slideUp(300);
+		// 			target.addClass('active-block');
+		// 			$(this).next('.acc-content').slideDown(300);
+		// 		}
+		// 	});
+		// }
 
 
 		//LightBox / Fancybox
@@ -427,79 +425,79 @@
 		sortableMasonry();
 
 		//Projects Tabs
-		if ($('.project-tab').length) {
-			$('.project-tab .project-tab-btns .p-tab-btn').on('click', function (e) {
-				e.preventDefault();
-				var target = $($(this).attr('data-tab'));
+		// if ($('.project-tab').length) {
+		// 	$('.project-tab .project-tab-btns .p-tab-btn').on('click', function (e) {
+		// 		e.preventDefault();
+		// 		var target = $($(this).attr('data-tab'));
 
-				if ($(target).hasClass('actve-tab')) {
-					return false;
-				} else {
-					$('.project-tab .project-tab-btns .p-tab-btn').removeClass('active-btn');
-					$(this).addClass('active-btn');
-					$('.project-tab .p-tabs-content .p-tab').removeClass('active-tab');
-					$(target).addClass('active-tab');
-				}
-			});
-		}
+		// 		if ($(target).hasClass('actve-tab')) {
+		// 			return false;
+		// 		} else {
+		// 			$('.project-tab .project-tab-btns .p-tab-btn').removeClass('active-btn');
+		// 			$(this).addClass('active-btn');
+		// 			$('.project-tab .p-tabs-content .p-tab').removeClass('active-tab');
+		// 			$(target).addClass('active-tab');
+		// 		}
+		// 	});
+		// }
 
 
 		// Single Image Carousel 
-		if ($('.single-image-carousel').length) {
-			var productThumbs = new Swiper('.single-image-carousel', {
-				preloadImages: false,
-				loop: true,
-				speed: 1400,
-				spaceBetween: 0,
-				effect: "fade",
-				autoplay: {
-					delay: 5000,
-					disableOnInteraction: false
-				},
+		// if ($('.single-image-carousel').length) {
+		// 	var productThumbs = new Swiper('.single-image-carousel', {
+		// 		preloadImages: false,
+		// 		loop: true,
+		// 		speed: 1400,
+		// 		spaceBetween: 0,
+		// 		effect: "fade",
+		// 		autoplay: {
+		// 			delay: 5000,
+		// 			disableOnInteraction: false
+		// 		},
 
-				navigation: {
-					nextEl: '.slider-button-next',
-					prevEl: '.slider-button-prev',
-				},
-			});
+		// 		navigation: {
+		// 			nextEl: '.slider-button-next',
+		// 			prevEl: '.slider-button-prev',
+		// 		},
+		// 	});
 
-		}
+		// }
 
 		//Projects Tabs
-		if ($('.project-tab').length) {
-			$('.project-tab .project-tab-btns .p-tab-btn').on('click', function (e) {
-				e.preventDefault();
-				var target = $($(this).attr('data-tab'));
+		// if ($('.project-tab').length) {
+		// 	$('.project-tab .project-tab-btns .p-tab-btn').on('click', function (e) {
+		// 		e.preventDefault();
+		// 		var target = $($(this).attr('data-tab'));
 
-				if ($(target).hasClass('actve-tab')) {
-					return false;
-				} else {
-					$('.project-tab .project-tab-btns .p-tab-btn').removeClass('active-btn');
-					$(this).addClass('active-btn');
-					$('.project-tab .p-tabs-content .p-tab').removeClass('active-tab');
-					$(target).addClass('active-tab');
-				}
-			});
-		}
+		// 		if ($(target).hasClass('actve-tab')) {
+		// 			return false;
+		// 		} else {
+		// 			$('.project-tab .project-tab-btns .p-tab-btn').removeClass('active-btn');
+		// 			$(this).addClass('active-btn');
+		// 			$('.project-tab .p-tabs-content .p-tab').removeClass('active-tab');
+		// 			$(target).addClass('active-tab');
+		// 		}
+		// 	});
+		// }
 
 		// Isotop Layout
-		function isotopeBlock() {
-			if ($(".isotope-block").length) {
-				var $grid = $('.isotope-block').isotope();
+		// function isotopeBlock() {
+		// 	if ($(".isotope-block").length) {
+		// 		var $grid = $('.isotope-block').isotope();
 
-			}
-		}
+		// 	}
+		// }
 
-		isotopeBlock();
+		// isotopeBlock();
 
 		//Progress Bar / Levels
-		if ($('.progress-levels .progress-box .bar-fill').length) {
-			$(".progress-box .bar-fill").each(function () {
-				var progressWidth = $(this).attr('data-percent');
-				$(this).css('width', progressWidth + '%');
-				$(this).children('.percent').html(progressWidth + '%');
-			});
-		}
+		// if ($('.progress-levels .progress-box .bar-fill').length) {
+		// 	$(".progress-box .bar-fill").each(function () {
+		// 		var progressWidth = $(this).attr('data-percent');
+		// 		$(this).css('width', progressWidth + '%');
+		// 		$(this).children('.percent').html(progressWidth + '%');
+		// 	});
+		// }
 
 		// Scroll to a Specific Div
 		if ($('.scroll-to-target').length) {
@@ -512,73 +510,73 @@
 			});
 		}
 
-		if ($('.ajax-sub-form').length > 0) {
-			$('.ajax-sub-form').ajaxChimp({
-				language: 'es',
-				url: "https://gmail.us17.list-manage.com/subscribe/post?u=8a43765a655b07d21fa500e4e&amp;id=2eda0a58a7" //Replace this with your mailchimp post URL.
-			});
+		// if ($('.ajax-sub-form').length > 0) {
+		// 	$('.ajax-sub-form').ajaxChimp({
+		// 		language: 'es',
+		// 		url: "https://gmail.us17.list-manage.com/subscribe/post?u=8a43765a655b07d21fa500e4e&amp;id=2eda0a58a7" //Replace this with your mailchimp post URL.
+		// 	});
 
-			$.ajaxChimp.translations.es = {
-				'submit': 'Submitting...',
-				0: 'Thanks for your subscription',
-				1: 'Please enter a valid email',
-				2: 'An email address must contain a single @',
-				3: 'The domain portion of the email address is invalid (the portion after the @: )',
-				4: 'The username portion of the email address is invalid (the portion before the @: )',
-				5: 'This email address looks fake or invalid. Please enter a real email address'
-			};
-		}
+		// 	$.ajaxChimp.translations.es = {
+		// 		'submit': 'Submitting...',
+		// 		0: 'Thanks for your subscription',
+		// 		1: 'Please enter a valid email',
+		// 		2: 'An email address must contain a single @',
+		// 		3: 'The domain portion of the email address is invalid (the portion after the @: )',
+		// 		4: 'The username portion of the email address is invalid (the portion before the @: )',
+		// 		5: 'This email address looks fake or invalid. Please enter a real email address'
+		// 	};
+		// }
 
 		//Jquery Knob animation 
-		if ($('.dial').length) {
-			$('.dial').appear(function () {
-				var elm = $(this);
-				var color = elm.attr('data-fgColor');
-				var perc = elm.attr('value');
-				elm.knob({
-					'value': 0,
-					'min': 0,
-					'max': 100,
-					'skin': 'tron',
-					'readOnly': true,
-					'thickness': 0.03,
-					'dynamicDraw': true,
-					'displayInput': false
-				});
-				$({
-					value: 0
-				}).animate({
-					value: perc
-				}, {
-					duration: 2000,
-					easing: 'swing',
-					progress: function () {
-						elm.val(Math.ceil(this.value)).trigger('change');
-					}
-				});
-				//circular progress bar color
-				$(this).append(function () {
-					// elm.parent().parent().find('.circular-bar-content').css('color',color);
-					//elm.parent().parent().find('.circular-bar-content .txt').text(perc);
-				});
-			}, {
-				accY: 20
-			});
-		}
+		// if ($('.dial').length) {
+		// 	$('.dial').appear(function () {
+		// 		var elm = $(this);
+		// 		var color = elm.attr('data-fgColor');
+		// 		var perc = elm.attr('value');
+		// 		elm.knob({
+		// 			'value': 0,
+		// 			'min': 0,
+		// 			'max': 100,
+		// 			'skin': 'tron',
+		// 			'readOnly': true,
+		// 			'thickness': 0.03,
+		// 			'dynamicDraw': true,
+		// 			'displayInput': false
+		// 		});
+		// 		$({
+		// 			value: 0
+		// 		}).animate({
+		// 			value: perc
+		// 		}, {
+		// 			duration: 2000,
+		// 			easing: 'swing',
+		// 			progress: function () {
+		// 				elm.val(Math.ceil(this.value)).trigger('change');
+		// 			}
+		// 		});
+		// 		//circular progress bar color
+		// 		$(this).append(function () {
+		// 			// elm.parent().parent().find('.circular-bar-content').css('color',color);
+		// 			//elm.parent().parent().find('.circular-bar-content .txt').text(perc);
+		// 		});
+		// 	}, {
+		// 		accY: 20
+		// 	});
+		// }
 
 		// Elements Animation
-		if ($('.wow').length) {
-			var wow = new WOW(
-				{
-					boxClass: 'wow',      // animated element css class (default is wow)
-					animateClass: 'animated', // animation css class (default is animated)
-					offset: 0,          // distance to the element when triggering the animation (default is 0)
-					mobile: true,       // trigger animations on mobile devices (default is true)
-					live: true       // act on asynchronously loaded content (default is true)
-				}
-			);
-			wow.init();
-		}
+		// if ($('.wow').length) {
+		// 	var wow = new WOW(
+		// 		{
+		// 			boxClass: 'wow',      // animated element css class (default is wow)
+		// 			animateClass: 'animated', // animation css class (default is animated)
+		// 			offset: 0,          // distance to the element when triggering the animation (default is 0)
+		// 			mobile: true,       // trigger animations on mobile devices (default is true)
+		// 			live: true       // act on asynchronously loaded content (default is true)
+		// 		}
+		// 	);
+		// 	wow.init();
+		// }
 
 		//Add One Page nav
 		if ($('.scroll-nav').length) {
@@ -602,7 +600,7 @@
 
 		jQuery(window).on('load', function () {
 			sortableMasonry();
-			isotopeBlock();
+			// isotopeBlock();
 			bannerSlider();
 		});
 	})
